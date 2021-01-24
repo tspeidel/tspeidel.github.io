@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Visualizations in the Analysis Workflow </title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Thomas Speidel, P.Stat., Data Scientist" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link href="libs/remark-css/default-fonts.css" rel="stylesheet" />
+    <link href="libs/font-awesome/css/all.css" rel="stylesheet" />
+    <link href="libs/font-awesome/css/v4-shims.css" rel="stylesheet" />
+    <script src="libs/kePrint/kePrint.js"></script>
+    <link href="libs/lightable/lightable.css" rel="stylesheet" />
+    <link rel="stylesheet" href="my-theme.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Visualizations in the Analysis Workflow<br>
+## ASQ Calgary (section 409)
+### <strong>Thomas Speidel</strong>, P.Stat., Data Scientist
+### 2020/01/27 | A copy of this presentation is available on GitHub: <a href="https://github.com/tspeidel/ASQ" class="uri">https://github.com/tspeidel/ASQ</a> | Views are my own.
+
+---
+
+
+
+
+
+
+class: inverse
+
+# Agenda
+
+&lt;br&gt;
+
+
+In this presentation, I will provide an overview of the role that visualizations play in today's world of Big Data, AI (artificial intelligence), and ML (machine learning). Furthermore, I will illustrate how the second objective of visualizations addresses key principles of data and information quality.
+
+
+### Part 1. Establishing a Common Dictionary: Quality, Big Data, AI
+
+### Part 2. Visualizations: Objectives and Constraints
+
+### Part 3. Applications and Good Practices
+
+
+---
+
+# Data Manifesto
+
+Data, in an by themselves, do not directly create knowledge. While efforts to collect and store data have increased dramatically in recent years, nearly absent is a focus on knowledge creation.  In the age of **Big Data**, the availability of vast amounts of information can coexist with the **absence of knowledge**. 
+
+**Data cannot speak for themselves**.  It is in when we interpret data that knowledge is created. My focus is on **bridging the gap between data and knowledge creation**. That gap is filled by statistics and evidence based decision making.
+
+---
+
+class: inverse, center, middle
+
+# Part 1 &lt;br&gt; A Common Dictionary
+
+---
+
+# Quality is not Binary 
+
+Statistics Canada defines quality along 6-dimensions.
+
+1. Relevance
+
+2. **Accuracy**: the degree to which the information correctly describes the phenomena it was designed to measure
+
+3. Timeliness
+
+4. Accessibility
+
+5. **Interpretability**: the information necessary to interpret and utilize it appropriately
+
+6. **Coherence**: the degree to which it can be successfully brought together with other information
+
+&lt;br&gt;
+
+&gt; *Quality must be built in at each phase of the process*
+
+
+&lt;small&gt;
+.footnote[[1] *Government of Canada, S. C. (2009).  Statistics Canada Quality Guidelines &lt;a href="https://www150.statcan.gc.ca/n1/en/catalogue/12-539-X2009001"&gt; &lt;i class="fa fa-external-link"&gt;&lt;/i&gt;&lt;/a&gt;*]
+&lt;/small&gt;
+
+---
+
+# How do we assess the 6-dimensions?
+
+&lt;br&gt;
+
+### Principle of **Intelligent transparency**
+Accessible, comprehensible, usable, assessable.
+
+* The consumer of the information needs to be aware of key quality aspects, irrespective of role.
+
+* Some dimensions are obvious (e.g. timeliness), others require analyses
+
+* The use of visualization play a key role in both discovering and communicating the quality of the information.
+
+
+&lt;small&gt;
+.footnote[[1] *Royal Society. (n.d.).  Final report - Science as an open enterprise &lt;a href="https://royalsociety.org/topics-policy/projects/science-public-enterprise/report/"&gt; &lt;i class="fa fa-external-link"&gt;&lt;/i&gt;&lt;/a&gt;*]
+&lt;/small&gt;
+
+---
+class: inverse
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+&gt; ... *and it almost always happens that data that are ideally fit for one use are marginally fit for a second and poorly fit for a third.*
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+&lt;small&gt;
+.footnote[*Redman, T. C. (2001). Data quality: The Field guide. &lt;a href="https://www.amazon.com/Data-Quality-Thomas-Redman-PhD/dp/1555582516"&gt; &lt;i class="fa fa-external-link"&gt;&lt;/i&gt;*]
+&lt;/small&gt;
+
+
+---
+
+# Big Data
+&lt;center&gt;
+*We have lots and lots of data! We don't need to worry about quality or interpretation!*
+&lt;/center&gt;
+&lt;br&gt;
+
+.pull-left[
+![](Figures/trainrideship.jpg)
+]
+
+
+.pull-right[
+
+* Big Data largely refers to the management of vast quantities of data (4V's Volume, Velocity, Variety, Veracity).
+
+* Main challenges of Big Data are: management, relevance, coherence, accuracy.
+
+* Relevance, coherence, accuracy are challenges of **any** data. Thus, **management** is the differentiator (cluster computing, cloud ecosystems, model management, metadata management, GPU, etc).
+
+]
+
+---
+
+# What About AI?
+
+.pull-left[
+
+![https://medium.com/@mijordan3/artificial-intelligence-the-revolution-hasnt-happened-yet-5e1d5812e1e7
+](Figures/jordan.jpg)
+
+&lt;small&gt;*Michael Jordan is an American scientist, professor at the University of California, Berkeley and researcher in machine learning, statistics, and artificial intelligence. He is one of the leading figures in machine learning, and in 2016 Science reported him as the world's most influential computer scientist. (Wikipedia).*&lt;/small&gt;
+]
+
+
+
+.pull-right[
+* The science of developing computer systems that can perform tasks normally requiring human intelligence.
+
+* "*Most of what is being called “AI” today, is what has been called “Machine Learning” (ML) for the past several decades. ML is an algorithmic field that blends ideas from statistics, computer science and many other disciplines to design algorithms that process data, make predictions and help make decisions*".
+
+* *Rebranding of well established ideas and technologies*.
+
+* "AI" used as an intellectual wildcard "*one that makes it difficult to reason about the scope and consequences of emerging technology*".
+
+&lt;small&gt;
+.footnote[*Jordan, M. (2018, April 30). Artificial intelligence — The revolution hasn’t happened yet. Medium. &lt;a href="https://medium.com/@mijordan3/artificial-intelligence-the-revolution-hasnt-happened-yet-5e1d5812e1e7"&gt; &lt;i class="fa fa-external-link"&gt;&lt;/i&gt;*]
+&lt;/small&gt;
+
+]
+
+---
+# ... and what practitioners think...
+
+&lt;br&gt;
+
+![](Figures/velloso.png)
+
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+&lt;small&gt;
+.footnote[*Velloso, M. (2018). &lt;a href="https://twitter.com/matvelloso/status/1065778379612282885"&gt; &lt;i class="fa fa-external-link"&gt;&lt;/i&gt;*]
+&lt;/small&gt;
+
+---
+
+# What we often mean by AI (and where it works well)
+
+.pull-left[
+&lt;img src="Figures/elephants.png" width="365"&gt; 
+
+&lt;small&gt;
+.footnote[*Gill, V. (2021, January 21). Elephants counted from space for conservation. BBC News. &lt;a href="https://www.bbc.com/news/science-environment-55737086"&gt; &lt;i class="fa fa-external-link"&gt;&lt;/i&gt;&lt;/a&gt;*]
+&lt;/small&gt;
+]
+
+.pull-right[
+* Humans label thousands of satellite images of elephants
+
+* A deep learning algorithm (a type of Artificial Neural Network) is trained on the labelled images
+
+* If the training is satisfactory, the algorithm is applied on new data *of the same stream* 
+
+* Besides the algorithm, the data pipeline and technology stack are important aspects
+
+]
+
+
+
+---
+
+# ... and where it &lt;del&gt;works well&lt;/del&gt; doesn't work well
+
+![](Figures/ai-poor-results.png)
+
+
+
+---
+class: inverse
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+&gt; *In short, the biggest difference between AI then and now is that the necessary computational capacity, raw volumes of data, and processing speeds are readily available so the technology can shine.*
+
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+&lt;small&gt;
+.footnote[*Hammond, C. (2015). Why artificial intelligence is succeeding: Then and now. &lt;a href="https://www.computerworld.com/article/2982482/why-artificial-intelligence-is-succeeding-then-and-now.html"&gt; &lt;i class="fa fa-external-link"&gt;&lt;/i&gt;*]
+&lt;/small&gt;
+
+
+---
+
+class: inverse, center, middle
+
+# Part 2 &lt;br&gt; Visualizations: Objectives and Constraints
+
+---
+
+# Two objectives
+
+&lt;br&gt;
+
+### **Communication (first goal)**: display a convincing pattern, attract reader's attention 
+
+### **Discovery (second goal)**: observe deviations from our expectations 
+
+
+&lt;small&gt;
+.footnote[[1] *Gelman, Unwin. 2013 &lt;a href="www.tandfonline.com/doi/abs/10.1080/10618600.2012.761137"&gt; &lt;i class="fa fa-external-link"&gt;&lt;/i&gt;&lt;/a&gt;*]
+&lt;/small&gt;
+
+---
+
+# First Goal of Visualizations: Communication
+
+To summarize, communicate and engage (telling a story)
+
+
+![](Figures/infoviz.jpg)
+
+
+
+---
+
+# Second Goal of Visualizations: Discovery
+
+To identify, understand, highlight features or relationships (helping the readers make up their mind) 
+
+&lt;br&gt;
+
+![](Figures/statviz.png)
+
+&lt;small&gt;
+.footnote[[1] *Gelman, Unwin. 2013 &lt;a href="www.tandfonline.com/doi/abs/10.1080/10618600.2012.761137"&gt; &lt;i class="fa fa-external-link"&gt;&lt;/i&gt;&lt;/a&gt;*]
+&lt;/small&gt;
+---
+
+# To Persuade or to Inform?
+
+Why do we have to choose? Because we **cannot** achieve both effectively at the same time (*Spiegelhalter, Pearson, Short. 2011 &lt;a href="https://vcg.seas.harvard.edu/files/pfister/files/infovis_submission251-camera.pdf"&gt; &lt;i class="fa fa-external-link"&gt;&lt;/i&gt;&lt;/a&gt;*).
+
+&lt;center&gt;
+
+--
+
+.pull-left[
+###**To Persuade**
+&lt;img src="Figures/mayo.jpg" width="180px"&gt; 
+]
+
+--
+
+.pull-right[
+###**To Inform**
+&lt;img src="Figures/nutritional.png" width="150px"&gt; 
+]
+
+&lt;/center&gt;
+
+
+---
+
+class: inverse, center, middle
+
+# &lt;del&gt;Visualizations for Data Storytelling&lt;br&gt;(First Goal: Communication)&lt;/del&gt;
+
+
+---
+
+
+class: inverse, center, middle
+
+# Part 3: Applications and Good Practices
+
+
+---
+
+# Why Should We Care?
+
+&lt;br&gt;&lt;br&gt;
+
+1. Because data visualization is an integral and fundamental part of the Data Science/ML/AI workflow. In most cases, visualizations help us uncover fundamental problems with the way we use data.
+
+2. Because in a world of Big Data, AI, ML, IoT, **veracity** is more important than ever: visualization remain one of the main tool by which we assess data and information accuracy.
+
+&lt;br&gt;&lt;br&gt;
+
+&gt; *The transformation can only be accomplished by man, not by hardware (computers, gadgets, automation, new machinery). A company cannot buy its way into quality* - Edward Deming (1982). 
+
+
+
+&lt;small&gt;
+.footnote[[1] *Kuonen, D. (2018).  (Big) Data as the Fuel and Analytics as the Engine of the Digital Transformation &lt;a href="https://www.slideshare.net/kuonen/big-data-as-the-fuel-and-analytics-as-the-engine-of-the-digital-transformation-90781873"&gt; &lt;i class="fa fa-external-link"&gt;&lt;/i&gt;&lt;/a&gt;*]
+&lt;/small&gt;
+
+---
+
+# Why Should We Care?
+
+![](Figures/errors.jpg)
+
+---
+
+
+&lt;!-- # Example Dataset 1: Hard Drive Failures --&gt;
+
+
+&lt;!-- &lt;center&gt;&lt;img width="220px" src="Figures/Backblaze_Logo.svg.png"&gt;&lt;/center&gt; --&gt;
+
+&lt;!-- *"As a highly open company, [Backblaze](http://backblaze.com) publishes detailed information on the Storage Pod hardware, the Vault software, and the reliability statistics behind the hard drives it uses."* --&gt;
+
+&lt;!-- &lt;br&gt; --&gt;
+
+
+
+
+
+
+
+&lt;!-- --- --&gt;
+
+&lt;!-- # Example Dataset 2: Rock Characterization --&gt;
+&lt;!-- The dataset originates from Doublet (2001). --&gt;
+
+&lt;!-- &lt;small&gt; --&gt;
+
+
+
+
+
+
+---
+
+# What Workflow?
+
+&lt;img src="Figures/analysisworkflow.png" width="350px"&gt; 
+
+
+---
+# Summary Statistics
+
+Critically examine the data to see if it meets your expectations. Some key questions we asked ourselves:
+
+* What is an "observation" (row)?
+* Does the data capture the process or problem I want to understand?
+* Does the data capture well-established domain knowledge?
+* Are there gaps in the data? If so, why?
+* Are there extremes and outliers? Can we tell them apart?
+
+
+No need to be a Data Scientist to ask ourselves these questions!
+
+---
+
+# Summary Statistics
+
+&lt;center&gt;&lt;img width="980px" src="Figures/descriptive.png"&gt;&lt;/center&gt;
+
+
+
+
+
+---
+
+# Alternative Univariate Visualizations
+
+
+&lt;img src="Figures/unnamed-chunk-4-1.png" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+# Bivariate Visualizations
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+&gt;    *Numbers become evidence by being in relation to.*  
+&lt;small&gt;&lt;small&gt;
+&gt;    -Edward R. Tufte, Visual Explanations: Images &amp; Quantities, Evidence &amp; Narrative (1997)
+&lt;/small&gt;&lt;/small&gt;
+
+
+
+---
+# Kernel Density
+
+Kernel density plots have the unique advantage that they are self-standardizing. They are also more effective than histograms. This makes them useful to **compare distributions** when the units aren't the same (not here).
+
+
+&lt;img src="Figures/unnamed-chunk-5-1.png" style="display: block; margin: auto;" /&gt;
+
+
+
+---
+
+# Scatterplot Matrix or Cross Plot
+One of the very first plots you ant to make. Shows all pairwise combinations. Here, I've cheated by removing a few outliers.
+
+
+&lt;img src="Figures/unnamed-chunk-6-1.png" width="1200px" height="450px" /&gt;
+
+
+---
+# Boxplots
+Here we *cut* (bin) `helium.porosity` into quartiles (P25, P50, P75). 
+
+
+&lt;img src="Figures/unnamed-chunk-7-1.png" style="display: block; margin: auto;" /&gt;
+
+
+
+
+---
+
+
+# Scatterplots With 3 Variables
+
+
+
+&lt;center&gt;
+&lt;img src="Figures/hdscatter.png" width="810px"&gt;
+&lt;/center&gt;
+
+---
+
+# Scatterplots With 4 Variables
+
+&lt;img src="Figures/unnamed-chunk-9-1.png" style="display: block; margin: auto;" /&gt;
+
+
+
+---
+
+# Correlation Matrix
+A unitless measure of the strength of the association between pairs of variables.
+
+&lt;img src="Figures/unnamed-chunk-10-1.png" width="1200px" height="450px" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+# Last Value Carried Forward
+
+.pull-left[
+![](Figures/lvcf.gif)
+]
+
+
+.pull-right[
+* Common when data is collected for reporting/regulatory purposes
+
+* May not be so obvious to detect (sort order)
+
+* Big data mirage: effective sample size for `Var2` is n=3 (not 16!)
+
+* Problem: if undetected, can damage analysis and conclusions
+  - Analysts need to watch out
+  - Data providers should not assume values need to be filled/in
+]
+
+---
+
+# Last Value Carried Forward
+
+&lt;img src="Figures/unnamed-chunk-11-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+
+class: middle
+
+&gt;    *Information displays should be documentary, comparative, causal and explanatory, quantified, multivariate, exploratory, skeptical.*  
+&lt;small&gt;&lt;small&gt;
+&gt;    -Edward R. Tufte, Visual Explanations: Images &amp; Quantities, Evidence &amp; Narrative (1997)
+&lt;/small&gt;&lt;/small&gt;
+
+---
+
+
+# General Graphing
+
+
+&lt;center&gt;
+&lt;img src="Figures/scatterplot.png" width="990px"&gt;
+&lt;/center&gt;
+
+---
+
+# Table Tips
+
+&lt;center&gt;
+&lt;img src="Figures/table.png" width="990px"&gt;
+&lt;/center&gt;
+
+&lt;small&gt;
+.footnote[[1] *Recreated from Ehrenberg, 1981 &lt;a href="https://www.stat.washington.edu/pds/stat423/Documents/Ehrenberg.numeracy.pdf"&gt; &lt;i class="fa fa-external-link"&gt;&lt;/i&gt;&lt;/a&gt;*]
+&lt;/small&gt;
+
+
+---
+###Data-to-ink ratio
+
+&lt;br&gt;
+
+&lt;img src="Figures/chellenger.png" width="1000px"&gt;
+
+&lt;small&gt;
+.footnote[[1] *Recreated from Tufte, 1983. Visual Explanations: Images and Quantities, Evidence and Narrative &lt;a href="https://www.stat.washington.edu/pds/stat423/Documents/Ehrenberg.numeracy.pdf"&gt; &lt;i class="fa fa-external-link"&gt;&lt;/i&gt;&lt;/a&gt;*]
+&lt;/small&gt;
+
+---
+
+# The Type of Chart Affects Visual Judgement
+Experiments performed to quantify visual judgment of graphs: 25 years later, results have not changed.
+
+&lt;br&gt;
+
+&lt;center&gt;
+&lt;img src="Figures/cleveland.png" width="1000px"&gt;
+&lt;/center&gt;
+
+
+&lt;small&gt;
+.footnote[
+[1] *Cleveland and McGill, 1984 &lt;a href="http://info.slis.indiana.edu/~katy/S637-S11/cleveland84.pdf"&gt; &lt;i class="fa fa-external-link"&gt;&lt;/i&gt;&lt;/a&gt; and Heer and Bostok, 2010 &lt;a href="http://vis.stanford.edu/files/2010-MTurk-CHI.pdf"&gt; &lt;i class="fa fa-external-link"&gt;&lt;/i&gt;&lt;/a&gt;*
+]
+&lt;/small&gt;
+
+
+---
+
+# Avoid 3D
+.pull-left[
+### Why
+Removes clarity, adds obfuscation, inhibits comprehension, does not help retain information, third dimension is usually inexistent (and if it did exist, you would try to avoid it).
+
+### Exceptions
+Spatial data, interaction surfaces.
+
+### Advantages
+A reader is more likely to remember a 3D graph than a plain graph.
+]
+
+.pull-right[
+### Disadvantage
+A reader is more likely to be confused by a 3D graph than a plain graph.
+
+![](Figures/3d.png)
+]
+
+---
+# Visualizing High Density Data
+
+### Good...
+Add **transparency** (alpha) or reduce symbol size. Easy and quick to implement: reveals underlying patterns but may hide outliers.
+
+&lt;img src="Figures/unnamed-chunk-13-1.png" width="980px" height="250px" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Visualizing High Density Data
+
+.pull-left[
+### Better...
+
+Use **binning techniques** for high density data (they've been around since the mid 80's!). A little harder to read, but won't miss outliers and sparse data.]
+
+
+
+
+.pull-right[
+![](Figures/binhex_anim.gif)
+]
+
+---
+
+![](Figures/hexbin.png)
+---
+
+# Visualizing High Density Data
+
+.pull-left[
+![](Figures/bigdataoutliers.png)
+]
+
+.pull-right[
+* It is often the case that researchers have developed methods to deal with a problem.
+
+* It may not be cost-effective for mainstream or special purposes tools (e.g. Excel, historians, Tableau) to implement novel methods.
+
+* Analysts may want to consider getting the help of a Data Scientist or learning to use tools such as R or Python where these methods are usually implemented as libraries/packages
+
+&lt;small&gt;
+.footnote[[1] *Wilkinson, L. (2018). Visualizing big data outliers through distributed aggregation. IEEE Transactions on Visualization and Computer Graphics, 24(1), 256-266 &lt;a href="https://doi.org/10.1109/tvcg.2017.2744685"&gt; &lt;i class="fa fa-external-link"&gt;&lt;/i&gt;&lt;/a&gt;*]
+&lt;/small&gt;
+
+]
+
+---
+# Visualizing High Density Data
+
+### Best...
+**Critically assess** whether you need BIG data in the first place: unless outliers are the main focus of analysis, it's often satisfactory to **sample** the data.
+
+&lt;img src="Figures/unnamed-chunk-15-1.png" width="300px" height="280px" style="display: block; margin: auto;" /&gt;
+
+
+&lt;small&gt;
+.footnote[
+[1] *If you are unconvinced, ask yourself: do I really have the whole population despite a huge dataset? Big data provides no protection against bias &lt;a href="https://www.e-publications.org/ims/submission/AOAS/user/submissionFile/34436?confirm=7e3fbb22"&gt; &lt;i class="fa fa-external-link"&gt;&lt;/i&gt;&lt;/a&gt;*
+]
+&lt;/small&gt;
+
+---
+
+
+# Show the Uncertainty
+We need to visualize the uncertainty in order to make optimal decisions.
+
+.pull-left[
+&lt;br&gt;
+&lt;img src="Figures/jobnumbers.gif" width="500px"&gt;
+]
+
+.pull-right[
+&lt;img src="Figures/uncertainty.png" width="500px"&gt;
+]
+
+
+&lt;small&gt;
+.footnote[
+[1] *New York Times. How Not to Be Misled by the Jobs Report, 2014 &lt;a href="https://www.nytimes.com/2014/05/02/upshot/how-not-to-be-misled-by-the-jobs-report.html"&gt; &lt;i class="fa fa-external-link"&gt;&lt;/i&gt;&lt;/a&gt;*  
+[2] *Chato Osio and Hamon. 2017 &lt;a href="http://www.flr-project.org/doc/ggplotFL_plotting_FLR_objects_with_ggplot2.html"&gt; &lt;i class="fa fa-external-link"&gt;&lt;/i&gt;&lt;/a&gt;*
+
+]
+&lt;/small&gt;
+
+---
+
+class: middle
+
+&gt;    *An approximate answer to the right problem is worth a good deal more than an exact answer to an approximate problem*  
+&lt;small&gt;&lt;small&gt;
+&gt;    -John Tukey
+&lt;/small&gt;&lt;/small&gt;
+
+---
+
+class: inverse, center, middle
+
+# 8. References
+
+---
+
+class: center, middle
+
+&lt;img src="Figures/books.png" width="1000px"&gt;
+
+
+---
+
+class: center, middle
+
+&lt;small&gt;
+
+| Author                                    	| Title                                	|
+|---------------------------------------	|-------------------------------------------------------------------------------	|
+| Tufte, E. R. (1983)                   	| The Visual Display Of Quantitative Information                                	|
+| Tufte, E. R. (1990)                   	| Envisioning Information                                                       	|
+| Tukey, J. W. (1977)                   	| Exploratory Data Analysis                                                     	|
+| Few, S. (2012)                        	| Show Me The Numbers. Designing Tables And Graph To Enlighten.                 	|
+| Chiasson T., Gregory D. et al. (2014) 	| Data + Design                                                                 	|
+| Ehrenberg, A.S.C. (1981)              	| The Problem Of Numeracy. The American Statistician, Vol. 35, N. 2             	|
+| Wilkinson, L. (2005)                  	| The Grammar Of Graphics                                                       	|
+| Simon, H.A. (1996)                    	| The Sciences Of The Artificial.                                               	|
+| Cleveland, W.S. (1985)                	| The Elements Of Graphing Data.                                                	|
+| Yau, N. (2011)                        	| Visualize This. The Flowingdata Guide To Design, Visualization And Statistics 	|
+| Good P.I., Hardin J.W. (2012)         	| Common Errors In Statistics (And How To Avoid Them)                           	|
+| Gelman A., Unwin A. (2012)            	| Infovis And Statistical Graphics: Different Goals, Different Looks            	|
+
+&lt;/small&gt;
+
+---
+background-image: url(Figures/background2.jpg)
+background-size: cover
+class: inverse, center, middle
+
+# Thank you
+
+**Thomas Speidel**  
+thomas@speidel.ca &lt;a href="mailto:thomas@speidel.ca"&gt; &lt;i class="fa fa-external-link"&gt;&lt;/i&gt;&lt;/a&gt;   
+ca.linkedin.com/in/speidel/ &lt;a href="http://ca.linkedin.com/in/speidel"&gt; &lt;i class="fa fa-external-link"&gt;&lt;/i&gt;&lt;/a&gt;   
+alternative-stats.netlify.com &lt;a href="http://alternative-stats.netlify.com"&gt; &lt;i class="fa fa-external-link"&gt;&lt;/i&gt;&lt;/a&gt;   
+
+&lt;br&gt;
+&lt;small&gt;&lt;small&gt;
+
+*This presentation and most of the graphs were produced in [**R**](https://en.wikipedia.org/wiki/R_(programming_language), a programming language and software &lt;br&gt; environment for statistical computing and graphics. The [Xaringan](https://slides.yihui.name/xaringan/#1) package was used for as the presentation template.*
+
+&lt;img style="margin: 25px 20px 1px 1px;" src="Figures/Rlogo.png" width="10%"&gt;
+
+
+&lt;/small&gt;&lt;/small&gt;
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
