@@ -1,0 +1,1465 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Visualizations in the Analysis Workflow</title>
+    <meta charset="utf-8">
+    <meta name="author" content="Thomas Speidel, P.Stat., Data Scientist" />
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link href="libs/remark-css/default-fonts.css" rel="stylesheet" />
+    <link href="libs/font-awesome/css/fa-svg-with-js.css" rel="stylesheet" />
+    <script src="libs/font-awesome/js/fontawesome-all.min.js"></script>
+    <script src="libs/font-awesome/js/fa-v4-shims.min.js"></script>
+    <script src="libs/kePrint/kePrint.js"></script>
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Visualizations in the Analysis Workflow
+## SPE
+### <strong>Thomas Speidel</strong>, P.Stat., Data Scientist
+### <br>2018/04/17 <br> A copy of this presentation is available on GitHub: <a href="https://github.com/tspeidel/SPE" class="uri">https://github.com/tspeidel/SPE</a> <br> Views are my own.
+
+---
+
+
+
+
+
+
+class: inverse
+
+# Agenda
+
+&lt;br&gt;
+
+1.   Visualizations: Objectives and Constraints
+
+2.   Visualizations for Data Storytelling
+
+3.   Univariate Visualizations
+
+4.   Bivariate Visualizations
+
+5.   Visualizing Models
+
+6.   Tips &amp; Best Practices
+
+7.   What to Look for in Visualization Tools? An Opinionated List
+
+8.   References
+
+---
+
+# Data Manifesto
+
+Data, in an by themselves, do not directly create knowledge. While efforts to collect and store data have increased dramatically in recent years, nearly absent is a focus on knowledge creation.  In the age of **Big Data**, the availability of vast amounts of information can coexist with the **absence of knowledge**. 
+
+**Data cannot speak for themselves**.  It is in when we interpret data that knowledge is created. My focus is on **bridging the gap between data and knowledge creation**. That gap is filled by statistics and evidence based decision making.
+
+---
+
+class: inverse, center, middle
+
+# 1. Visualizations: Objectives and Constraints
+
+---
+
+# Why Visualizations?
+
+&gt; *At their best, graphics are instruments for reasoning about quantitative information (Tufte, 1983)*
+
+&gt; *Graphs are exceptionally powerful tools for data analysis (Cleveland, 1985)*
+
+&gt; *There is no statistical tool that is as powerful as a well-chosen graph (Chambers, 1983)*
+
+&gt; *Diagrams prove nothing, but bring outstanding features readily to the eye (Fisher, 1925)*
+
+
+&lt;br&gt;
+
+--
+
+###Two broad objectives:
+
+* **Communication**: display a convincing pattern, attract reader's attention (first goal)
+
+* **Discovery**: observe deviations from our expectations (second goal)
+
+
+&lt;small&gt;
+.footnote[[1] *Gelman, Unwin. 2013 &lt;a href="www.tandfonline.com/doi/abs/10.1080/10618600.2012.761137"&gt; &lt;i class="fa fa-external-link"&gt;&lt;/i&gt;&lt;/a&gt;*]
+&lt;/small&gt;
+
+---
+
+# First Goal of Visualizations
+
+To summarize, communicate and engage (telling a story)
+
+
+![](Figures/infoviz.jpg)
+
+
+
+---
+
+# Second Goal of Visualizations
+
+To identify, understand, highlight features or relationships (helping the readers make up their mind) 
+
+&lt;br&gt;
+
+![](Figures/statviz.png)
+
+&lt;small&gt;
+.footnote[[1] *Gelman, Unwin. 2013 &lt;a href="www.tandfonline.com/doi/abs/10.1080/10618600.2012.761137"&gt; &lt;i class="fa fa-external-link"&gt;&lt;/i&gt;&lt;/a&gt;*]
+&lt;/small&gt;
+---
+
+# To Persuade or to Inform?
+
+We **cannot** achieve both effectively at the same time!
+
+&lt;center&gt;
+
+--
+
+.pull-left[
+###To Persuade
+&lt;img src="Figures/mayo.jpg" width="160px"&gt; 
+]
+
+--
+
+.pull-right[
+###To Inform
+&lt;img src="Figures/nutritional.png" width="160px"&gt; 
+]
+
+&lt;/center&gt;
+
+&lt;small&gt;
+.footnote[[1] *Spiegelhalter, Pearson, Short. 2011 &lt;a href="https://vcg.seas.harvard.edu/files/pfister/files/infovis_submission251-camera.pdf"&gt; &lt;i class="fa fa-external-link"&gt;&lt;/i&gt;&lt;/a&gt;*] 
+&lt;/small&gt;
+
+---
+
+# To Remember or to Understand?
+
+.pull-left[
+Can we achieve memory **and** understanding at the same time?
+
+1.  **Titles and annotations** help convey the message of a visualization 
+
+2.  If used appropriately, **pictograms** do not interfere with understanding and can improve recognition
+
+3.  **Redundancy** helps effectively communicate the message 
+]
+
+
+.pull-right[
+&lt;div style="text-align:center"&gt;&lt;img src="Figures/annotations.png" width="600px"&gt;&lt;/div&gt;
+&lt;/small&gt;
+]
+
+
+&lt;small&gt;
+.footnote[ [1] *Borkin et al. 2015. Beyond Memorability: Visualization Recognition and Recall &lt;a href="https://vcg.seas.harvard.edu/files/pfister/files/infovis_submission251-camera.pdf"&gt; &lt;i class="fa fa-external-link"&gt;&lt;/i&gt;&lt;/a&gt;*
+
+[2] *Bob Rudis 2016. &lt;a href="https://rud.is/b/2016/06/16/your-data-vis-spidey-sense-the-need-for-a-robust-utility-belt/"&gt; &lt;i class="fa fa-external-link"&gt;&lt;/i&gt;&lt;/a&gt;*] 
+&lt;/small&gt;
+
+---
+
+# Example Dataset
+
+The dataset originates from Doublet (2001).
+
+
+&lt;small&gt;
+
+
+&lt;table class="table table-striped table-hover table-condensed" style="margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; well &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; depth &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; program &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; helium.porosity &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; gdens &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; kmax &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; k90 &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; rtype &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; gr &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; rhob &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; pe &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; nphils &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; lld &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; lls &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 1509 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 6354.5 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 10-acre &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 8.6 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 2.84 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 6.57 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 1.52 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 26.81 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 2.720 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 3.411 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 0.0865 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 456.78 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 167.17 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 1509 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 6355.5 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 10-acre &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 5.2 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 2.85 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 0.09 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 0.07 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 22.83 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 2.745 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 3.326 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 0.0648 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 634.94 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 257.95 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 1509 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 7078.5 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 10-acre &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 1.7 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 2.83 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 0.40 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 0.12 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 21.09 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 2.758 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 3.146 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 0.0658 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 634.60 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 525.03 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 1509 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 7079.5 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 10-acre &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 1.9 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 2.82 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 0.25 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 0.17 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 24.99 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 2.761 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 3.237 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 0.0693 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 1003.90 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 811.04 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 1509 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 7080.5 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 10-acre &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 2.3 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 2.86 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 0.75 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 0.37 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 24.39 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 2.776 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 3.268 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 0.0648 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 1349.71 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 1204.42 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+.footnote[ 
+[1] *Thanks to D. Kaviani for pointing me to the data and for the preparatory work.*  
+[2] *Doublet, L.E. (2001) An Integrated Geologic and Engineering Characterization of the North Robertson (Clear Fork) Unit, Gaines
+County, Texas. Petroleum Engineering PhD thesis, Texas A&amp;amp;M University.*
+]
+
+&lt;/small&gt;
+
+---
+background-image: url(Figures/tukey.jpeg)
+background-size: cover
+class: inverse
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+# Exploratory Data Analysis (EDA)
+
+As the analsys progresses we gradually build a more refined idea what we want to understand. Along this path we encounter many other **questions** that need answering, **problems** that need investigating and **ideas** that need exploring. You "*ask questions about whether your data meets your expectations or not*" (1). 
+
+We call this **[exploratory data analysis](https://en.wikipedia.org/wiki/Exploratory_data_analysis)** (EDA).  EDA makes abundant use of statistical graphics.
+
+&gt;    *Graphs force us to note the unexpected; nothing could be more important.*  
+&lt;small&gt;
+&gt;    -John Tukey 
+&lt;/small&gt;
+
+&lt;small&gt;
+.footnote[[1] *Grolemund, Wickham. R for Data Science, 2017 &lt;a href="http://r4ds.had.co.nz/index.html"&gt; &lt;i class="fa fa-external-link"&gt;&lt;/i&gt;&lt;/a&gt;*]
+&lt;/small&gt;
+
+
+---
+
+class: inverse, center, middle
+
+# 2. Visualizations for Data Storytelling
+
+---
+
+# Telling a Story
+.pull-left[
+
+Display a convincing pattern, attract reader's attention
+]
+
+.pull-right[
+&lt;center&gt;
+&lt;iframe width="470" height="405" src="Figures/booms.mp4" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;
+&lt;/center&gt;
+]
+
+&lt;small&gt;
+.footnote[[1] *Bob Rudis 2016&lt;a href="https://rud.is/b/2016/03/26/nuclear-animations-in-r/"&gt; &lt;i class="fa fa-external-link"&gt;&lt;/i&gt;&lt;/a&gt;*] 
+&lt;/small&gt;
+
+---
+
+background-image: url(Figures/nyt1.png)
+background-size: cover
+
+&lt;small&gt;
+.footnote[[1] *New York Times. Mapping Poverty in America, 2014. &lt;a href="http://www.nytimes.com/newsgraphics/2014/01/05/poverty-map/index.html/"&gt; &lt;i class="fa fa-external-link"&gt;&lt;/i&gt;&lt;/a&gt;*] 
+&lt;/small&gt;
+
+---
+
+background-image: url(Figures/lupi3.jpg)
+background-size: cover
+
+&lt;small&gt;
+.footnote[[1] *Giorgia Lupi. Nobels, No Degrees, 2012. &lt;a href="https://www.behance.net/gallery/14159439/Nobel-no-degrees"&gt; &lt;i class="fa fa-external-link"&gt;&lt;/i&gt;&lt;/a&gt;*] 
+&lt;/small&gt;
+
+---
+
+class: inverse, center, middle
+
+
+&lt;iframe width="450" height="500" src="Figures/butterflies.mp4" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt; 
+
+
+---
+
+class: inverse, center, middle
+
+# 3. Univariate Visualizations
+
+
+---
+
+
+# Summary Statistics
+
+&lt;small&gt;
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+<script type="text/javascript">
+<!--
+    function expand_collapse(id) {
+       var e = document.getElementById(id);
+       var f = document.getElementById(id+"_earrows");
+       if(e.style.display == 'none'){
+          e.style.display = 'block';
+          f.innerHTML = '&#9650';
+       }
+       else {
+          e.style.display = 'none';
+          f.innerHTML = '&#9660';
+       }
+    }
+//-->
+</script>
+<style>
+.earrows {color:silver;font-size:11px;}
+
+fcap {
+ font-family: Verdana;
+ font-size: 12px;
+ color: MidnightBlue
+ }
+
+smg {
+ font-family: Verdana;
+ font-size: 10px;
+ color: &#808080;
+}
+
+hr.thinhr { margin-top: 0.15em; margin-bottom: 0.15em; }
+
+span.xscript {
+position: relative;
+}
+span.xscript sub {
+position: absolute;
+left: 0.1em;
+bottom: -1ex;
+}
+</style>
+ <font color="MidnightBlue"><div align=center><span style="font-weight:bold">. <br><br> 1  Variables   625  Observations</span></div></font> <hr class="thinhr"> <span style="font-weight:bold">helium.porosity</span><div style='float: right; text-align: right;'><img src="data:image/png;base64,
+iVBORw0KGgoAAAANSUhEUgAAAJcAAAANCAMAAACTvAxuAAAACVBMVEUAAADMzMz////1iUV5AAAAgklEQVQ4jdXTSwrAIAwE0Enuf2ixyfgDxYUYO4s2IpRHykC6APJGoF2A2eFy/uMyDcoUk4UrJ4JkkGaEu8AnXQG+pn8m8VeNhLS0bIIMHV1+x1Ve2t62qx6vukbNPFqwD7o4KVd6msn/su9amo/x8LXtjAr+sVwnK5UPkLHQy4LnywTd6grIl5LQVwAAAABJRU5ErkJggg==" alt="image" /></div> <style>
+ .hmisctable386186 {
+ border: none;
+ font-size: 100%;
+ }
+ .hmisctable386186 td {
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ }
+ .hmisctable386186 th {
+ color: MidnightBlue;
+ text-align: center;
+ padding: 0 1ex 0 1ex;
+ font-weight: normal;
+ }
+ </style>
+ <table class="hmisctable386186">
+ <tr><th>n</th><th>missing</th><th>distinct</th><th>Info</th><th>Mean</th><th>Gmd</th><th>.05</th><th>.10</th><th>.25</th><th>.50</th><th>.75</th><th>.90</th><th>.95</th></tr>
+ <tr><td>625</td><td>0</td><td>110</td><td>1</td><td>4.875</td><td>2.986</td><td> 1.5</td><td> 1.8</td><td> 2.8</td><td> 4.2</td><td> 6.5</td><td> 8.8</td><td>10.0</td></tr>
+ </table>
+ <span style="font-size: 85%;"><font color="MidnightBlue">lowest</font> :  0.7  0.8  0.9  1.0  1.1 ,  <font color="MidnightBlue">highest</font>: 13.2 14.0 14.2 16.3 20.3</span> <hr class="thinhr">![](Figures/unnamed-chunk-2-1.png)&lt;!-- --&gt;
+
+*Gmd stands for **Gini mean difference**, a scale independent measure of dispersion (it is the mean absolute difference between any pairs of observations).*
+
+*Info is a measure of how continuous the variable is.*
+
+&lt;/small&gt;
+
+---
+
+# Alternative Univariate Visualizations
+
+
+![](Figures/unnamed-chunk-3-1.png)&lt;!-- --&gt;
+
+
+---
+
+class: inverse, center, middle
+
+# 4. Bivariate Visualizations
+
+---
+
+class: middle
+
+&gt;    *Numbers become evidence by being in relation to.*  
+&lt;small&gt;&lt;small&gt;
+&gt;    -Edward R. Tufte, Visual Explanations: Images &amp; Quantities, Evidence &amp; Narrative (1997)
+&lt;/small&gt;&lt;/small&gt;
+
+---
+
+# Tables
+
+&lt;small&gt;
+&lt;small&gt;
+&lt;small&gt;
+
+<table class='gmisc_table' style='border-collapse: collapse; margin-top: 1em; margin-bottom: 1em;' >
+<thead>
+<tr><td colspan='10' style='text-align: left;'>
+Baseline characteristics by rock type.  </td></tr>
+<tr>
+<th style='font-weight: 900; border-bottom: 1px solid grey; border-top: 2px solid grey; width:13ex; text-align: center;'></th>
+<th style='border-bottom: 1px solid grey; border-top: 2px solid grey; text-align: center;'>1<br><i>N=80</i></th>
+<th style='border-bottom: 1px solid grey; border-top: 2px solid grey; text-align: center;'>2<br><i>N=180</i></th>
+<th style='border-bottom: 1px solid grey; border-top: 2px solid grey; text-align: center;'>3<br><i>N=37</i></th>
+<th style='border-bottom: 1px solid grey; border-top: 2px solid grey; text-align: center;'>4<br><i>N=26</i></th>
+<th style='border-bottom: 1px solid grey; border-top: 2px solid grey; text-align: center;'>5<br><i>N=42</i></th>
+<th style='border-bottom: 1px solid grey; border-top: 2px solid grey; text-align: center;'>6<br><i>N=229</i></th>
+<th style='border-bottom: 1px solid grey; border-top: 2px solid grey; text-align: center;'>7<br><i>N=31</i></th>
+<th style='border-bottom: 1px solid grey; border-top: 2px solid grey; text-align: center;'>Combined<br><i>N=625</i></th>
+<th style='border-bottom: 1px solid grey; border-top: 2px solid grey; text-align: center;'>Test Statistic<br></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style='width:13ex; text-align: left;'>depth</td>
+<td style='padding: 0 7px 0 7px; text-align: center;'>7008 7063 7128<br>6945 ±  308</td>
+<td style='padding: 0 7px 0 7px; text-align: center;'>6812 7008 7153<br>6916 ±  277</td>
+<td style='padding: 0 7px 0 7px; text-align: center;'>6858 7016 7092<br>6939 ±  246</td>
+<td style='padding: 0 7px 0 7px; text-align: center;'>6949 7151 7157<br>7002 ±  274</td>
+<td style='padding: 0 7px 0 7px; text-align: center;'>7225 7233 7244<br>7234 ±   14</td>
+<td style='padding: 0 7px 0 7px; text-align: center;'>6532 6880 7098<br>6823 ±  316</td>
+<td style='padding: 0 7px 0 7px; text-align: center;'>6791 6958 7159<br>6871 ±  296</td>
+<td style='padding: 0 7px 0 7px; text-align: center;'>6800 7042 7152<br>6910 ±  303</td>
+<td style='padding: 0 7px 0 7px; text-align: center;'><i>F</i><sub><span style="font-size: 80%;">6<U+2009>618</span></sub>=29, P<0.001</td>
+</tr>
+<tr>
+<td style='width:13ex; text-align: left;'>helium.porosity</td>
+<td style='padding: 0 7px 0 7px; text-align: center;'>2.3 3.4 5.2<br>4.3 ± 2.9</td>
+<td style='padding: 0 7px 0 7px; text-align: center;'>3.0 4.2 6.0<br>4.7 ± 2.6</td>
+<td style='padding: 0 7px 0 7px; text-align: center;'>3.1 4.5 6.1<br>4.7 ± 2.1</td>
+<td style='padding: 0 7px 0 7px; text-align: center;'>4.3 5.8 7.5<br>5.9 ± 1.9</td>
+<td style='padding: 0 7px 0 7px; text-align: center;'>6.6 8.2 9.4<br>8.2 ± 2.7</td>
+<td style='padding: 0 7px 0 7px; text-align: center;'>2.5 3.8 5.8<br>4.4 ± 2.6</td>
+<td style='padding: 0 7px 0 7px; text-align: center;'>4.0 6.1 7.0<br>5.7 ± 2.3</td>
+<td style='padding: 0 7px 0 7px; text-align: center;'>2.8 4.2 6.5<br>4.9 ± 2.7</td>
+<td style='padding: 0 7px 0 7px; text-align: center;'><i>F</i><sub><span style="font-size: 80%;">6<U+2009>618</span></sub>=15, P<0.001</td>
+</tr>
+<tr>
+<td style='width:13ex; text-align: left;'>gdens</td>
+<td style='padding: 0 7px 0 7px; text-align: center;'>2.840 2.845 2.860<br>2.843 ± 0.036</td>
+<td style='padding: 0 7px 0 7px; text-align: center;'>2.830 2.840 2.860<br>2.826 ± 0.193</td>
+<td style='padding: 0 7px 0 7px; text-align: center;'>2.830 2.840 2.850<br>2.843 ± 0.019</td>
+<td style='padding: 0 7px 0 7px; text-align: center;'>2.822 2.840 2.850<br>2.837 ± 0.032</td>
+<td style='padding: 0 7px 0 7px; text-align: center;'>2.723 2.740 2.750<br>2.745 ± 0.038</td>
+<td style='padding: 0 7px 0 7px; text-align: center;'>2.830 2.850 2.860<br>2.846 ± 0.020</td>
+<td style='padding: 0 7px 0 7px; text-align: center;'>2.830 2.840 2.850<br>2.837 ± 0.036</td>
+<td style='padding: 0 7px 0 7px; text-align: center;'>2.830 2.840 2.850<br>2.832 ± 0.108</td>
+<td style='padding: 0 7px 0 7px; text-align: center;'><i>F</i><sub><span style="font-size: 80%;">6<U+2009>618</span></sub>=21, P<0.001</td>
+</tr>
+<tr>
+<td style='width:13ex; border-bottom: 2px solid grey; text-align: left;'>kmax</td>
+<td style='padding: 0 7px 0 7px; border-bottom: 2px solid grey; text-align: center;'>  0.100   0.330   1.248<br> 23.706 ± 199.208</td>
+<td style='padding: 0 7px 0 7px; border-bottom: 2px solid grey; text-align: center;'>  0.070   0.250   1.088<br>  1.983 ±   7.148</td>
+<td style='padding: 0 7px 0 7px; border-bottom: 2px solid grey; text-align: center;'>  0.040   0.150   0.450<br>  0.742 ±   1.465</td>
+<td style='padding: 0 7px 0 7px; border-bottom: 2px solid grey; text-align: center;'>  0.092   0.210   0.697<br>  1.236 ±   2.465</td>
+<td style='padding: 0 7px 0 7px; border-bottom: 2px solid grey; text-align: center;'>  0.052   0.105   0.367<br>  0.342 ±   0.532</td>
+<td style='padding: 0 7px 0 7px; border-bottom: 2px solid grey; text-align: center;'>  0.090   0.280   1.120<br>  2.018 ±   6.363</td>
+<td style='padding: 0 7px 0 7px; border-bottom: 2px solid grey; text-align: center;'>  0.100   0.220   1.040<br>  1.249 ±   2.397</td>
+<td style='padding: 0 7px 0 7px; border-bottom: 2px solid grey; text-align: center;'>  0.070   0.240   1.020<br>  4.525 ±  71.474</td>
+<td style='padding: 0 7px 0 7px; border-bottom: 2px solid grey; text-align: center;'><i>F</i><sub><span style="font-size: 80%;">6<U+2009>618</span></sub>=2, P=0.063</td>
+</tr>
+</tbody>
+<tfoot><tr><td colspan='10'>
+<span style="font-size: 80%;"><i>a</i></span> <i>b</i> <span style="font-size: 80%;"><i>c</i></span> represent the lower quartile <i>a</i>, the median <i>b</i>, and the upper quartile <i>c</i> for continuous variables. <i>x ± s</i> represents <span style="text-decoration: overline">X</span> ± 1 SD. <br> Test used: Kruskal-Wallis test .</td></tr></tfoot>
+</table>
+
+&lt;/small&gt;
+&lt;/small&gt;
+&lt;/small&gt;
+
+---
+
+# Combining Tables with Graphs
+&lt;br&gt;
+
+&lt;center&gt;
+&lt;img src="Figures/tablegraph.png" width="700px"&gt;
+&lt;/center&gt;
+
+&lt;small&gt;
+.footnote[
+[1] *Matthew Leonawicz &lt;a href="https://leonawicz.github.io/HtmlWidgetExamples/ex_dt_sparkline.html"&gt; &lt;i class="fa fa-external-link"&gt;&lt;/i&gt;&lt;/a&gt;*]
+&lt;/small&gt;
+
+
+---
+# Kernel Density
+
+Kernel density plots have the unique advantage that they are self-standardizing. They are also more effective than histograms. This makes them useful to **compare distributions** when the units aren't the same (not here).
+
+
+![](Figures/unnamed-chunk-5-1.png)&lt;!-- --&gt;
+
+---
+# Scatterplot Matrix or Cross Plot
+One of the very first plots you ant to make. Shows all pairwise combinations. Here, I've cheated by removing a few outliers.
+
+
+&lt;img src="Figures/unnamed-chunk-6-1.png" width="1200px" height="450px" /&gt;
+
+
+---
+# Boxplots
+Here we *cut* (bin) `helium.porosity` into quartiles (P25, P50, P75). 
+
+
+![](Figures/unnamed-chunk-7-1.png)&lt;!-- --&gt;
+
+
+---
+
+.pull-left[
+Here we use a **boxplot** to highlight the *remaining pattern* in `k90` after removing the strong effect of `helium.porosity`. We do that with a model:
+
+`lm(log(k90) ~ cut2(helium.porosity, g = 4), data = blasingame)`
+]
+
+
+.pull-right[
+
+![](Figures/unnamed-chunk-8-1.png)&lt;!-- --&gt;
+
+]
+
+
+&lt;small&gt;&lt;small&gt;
+.footnote[[1] *This approach should be used cautiously: if the there is a correlation between rock type and helium porosity, we cannot easily isolate the two.*] 
+&lt;/small&gt;&lt;/small&gt;
+
+---
+# Scatterplots With 2 Variables
+
+&lt;img src="Figures/unnamed-chunk-9-1.png" width="1200px" height="450px" style="display: block; margin: auto;" /&gt;
+
+
+---
+# Scatterplots With 3 Variables
+
+![](Figures/unnamed-chunk-10-1.png)&lt;!-- --&gt;
+
+---
+# Scatterplots With 4 Variables
+
+![](Figures/unnamed-chunk-11-1.png)&lt;!-- --&gt;
+
+
+
+---
+
+# Correlation Matrix
+A unitless measure of the strength of the association between pairs of variables.
+
+&lt;img src="Figures/unnamed-chunk-12-1.png" width="1200px" height="450px" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+class: inverse, center, middle
+
+# 5. Visualizing Models
+
+---
+
+
+# Graphs for Models
+It's much easier to interpret a model by graphing it! Here's a regression model of `k.ratio` on several variables. Compare this:
+
+&lt;small&gt;&lt;small&gt;&lt;small&gt;
+.pull-left[
+
+<table class='gmisc_table' style='border-collapse: collapse; margin-top: 1em; margin-bottom: 1em;' >
+<thead>
+<tr><td colspan='8' style='text-align: left;'>
+Effects          &emsp;&emsp;Response: <code>k.ratio</code></td></tr>
+<tr>
+<th style='font-weight: 900; border-bottom: 1px solid grey; border-top: 2px solid grey; text-align: center;'></th>
+<th style='border-bottom: 1px solid grey; border-top: 2px solid grey; text-align: right;'>Low</th>
+<th style='border-bottom: 1px solid grey; border-top: 2px solid grey; text-align: right;'>High</th>
+<th style='border-bottom: 1px solid grey; border-top: 2px solid grey; text-align: right;'>&Delta;</th>
+<th style='border-bottom: 1px solid grey; border-top: 2px solid grey; text-align: right;'>Effect</th>
+<th style='border-bottom: 1px solid grey; border-top: 2px solid grey; text-align: right;'>S.E.</th>
+<th style='border-bottom: 1px solid grey; border-top: 2px solid grey; text-align: right;'>Lower 0.95</th>
+<th style='border-bottom: 1px solid grey; border-top: 2px solid grey; text-align: right;'>Upper 0.95</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style='text-align: left;'>helium.porosity</td>
+<td style='padding-left:4ex; text-align: right;'>2.80000</td>
+<td style='padding-left:4ex; text-align: right;'>6.4000</td>
+<td style='padding-left:4ex; text-align: right;'>3.60000</td>
+<td style='padding-left:4ex; text-align: right;'>-0.47850</td>
+<td style='padding-left:4ex; text-align: right;'>0.2176</td>
+<td style='padding-left:4ex; text-align: right;'>-0.9049</td>
+<td style='padding-left:4ex; text-align: right;'>-0.0521</td>
+</tr>
+<tr>
+<td style='text-align: left;'>&emsp;<em>Odds Ratio</em></td>
+<td style='padding-left:4ex; text-align: right;'>2.80000</td>
+<td style='padding-left:4ex; text-align: right;'>6.4000</td>
+<td style='padding-left:4ex; text-align: right;'>3.60000</td>
+<td style='padding-left:4ex; text-align: right;'> 0.61970</td>
+<td style='padding-left:4ex; text-align: right;'></td>
+<td style='padding-left:4ex; text-align: right;'> 0.4046</td>
+<td style='padding-left:4ex; text-align: right;'> 0.9492</td>
+</tr>
+<tr>
+<td style='text-align: left;'>pe</td>
+<td style='padding-left:4ex; text-align: right;'>3.30600</td>
+<td style='padding-left:4ex; text-align: right;'>3.8450</td>
+<td style='padding-left:4ex; text-align: right;'>0.53980</td>
+<td style='padding-left:4ex; text-align: right;'>-0.04675</td>
+<td style='padding-left:4ex; text-align: right;'>0.1789</td>
+<td style='padding-left:4ex; text-align: right;'>-0.3974</td>
+<td style='padding-left:4ex; text-align: right;'> 0.3039</td>
+</tr>
+<tr>
+<td style='text-align: left;'>&emsp;<em>Odds Ratio</em></td>
+<td style='padding-left:4ex; text-align: right;'>3.30600</td>
+<td style='padding-left:4ex; text-align: right;'>3.8450</td>
+<td style='padding-left:4ex; text-align: right;'>0.53980</td>
+<td style='padding-left:4ex; text-align: right;'> 0.95430</td>
+<td style='padding-left:4ex; text-align: right;'></td>
+<td style='padding-left:4ex; text-align: right;'> 0.6721</td>
+<td style='padding-left:4ex; text-align: right;'> 1.3550</td>
+</tr>
+<tr>
+<td style='text-align: left;'>nphils</td>
+<td style='padding-left:4ex; text-align: right;'>0.06198</td>
+<td style='padding-left:4ex; text-align: right;'>0.1115</td>
+<td style='padding-left:4ex; text-align: right;'>0.04952</td>
+<td style='padding-left:4ex; text-align: right;'> 0.08786</td>
+<td style='padding-left:4ex; text-align: right;'>0.1443</td>
+<td style='padding-left:4ex; text-align: right;'>-0.1950</td>
+<td style='padding-left:4ex; text-align: right;'> 0.3707</td>
+</tr>
+<tr>
+<td style='text-align: left;'>&emsp;<em>Odds Ratio</em></td>
+<td style='padding-left:4ex; text-align: right;'>0.06198</td>
+<td style='padding-left:4ex; text-align: right;'>0.1115</td>
+<td style='padding-left:4ex; text-align: right;'>0.04952</td>
+<td style='padding-left:4ex; text-align: right;'> 1.09200</td>
+<td style='padding-left:4ex; text-align: right;'></td>
+<td style='padding-left:4ex; text-align: right;'> 0.8228</td>
+<td style='padding-left:4ex; text-align: right;'> 1.4490</td>
+</tr>
+<tr>
+<td style='text-align: left;'>rtype --- 1:6</td>
+<td style='padding-left:4ex; text-align: right;'>6.00000</td>
+<td style='padding-left:4ex; text-align: right;'>1.0000</td>
+<td style='padding-left:4ex; text-align: right;'></td>
+<td style='padding-left:4ex; text-align: right;'> 0.34150</td>
+<td style='padding-left:4ex; text-align: right;'>0.2686</td>
+<td style='padding-left:4ex; text-align: right;'>-0.1849</td>
+<td style='padding-left:4ex; text-align: right;'> 0.8679</td>
+</tr>
+<tr>
+<td style='text-align: left;'>&emsp;<em>Odds Ratio</em></td>
+<td style='padding-left:4ex; text-align: right;'>6.00000</td>
+<td style='padding-left:4ex; text-align: right;'>1.0000</td>
+<td style='padding-left:4ex; text-align: right;'></td>
+<td style='padding-left:4ex; text-align: right;'> 1.40700</td>
+<td style='padding-left:4ex; text-align: right;'></td>
+<td style='padding-left:4ex; text-align: right;'> 0.8312</td>
+<td style='padding-left:4ex; text-align: right;'> 2.3820</td>
+</tr>
+<tr>
+<td style='text-align: left;'>rtype --- 2:6</td>
+<td style='padding-left:4ex; text-align: right;'>6.00000</td>
+<td style='padding-left:4ex; text-align: right;'>2.0000</td>
+<td style='padding-left:4ex; text-align: right;'></td>
+<td style='padding-left:4ex; text-align: right;'> 0.05197</td>
+<td style='padding-left:4ex; text-align: right;'>0.2484</td>
+<td style='padding-left:4ex; text-align: right;'>-0.4348</td>
+<td style='padding-left:4ex; text-align: right;'> 0.5388</td>
+</tr>
+<tr>
+<td style='text-align: left;'>&emsp;<em>Odds Ratio</em></td>
+<td style='padding-left:4ex; text-align: right;'>6.00000</td>
+<td style='padding-left:4ex; text-align: right;'>2.0000</td>
+<td style='padding-left:4ex; text-align: right;'></td>
+<td style='padding-left:4ex; text-align: right;'> 1.05300</td>
+<td style='padding-left:4ex; text-align: right;'></td>
+<td style='padding-left:4ex; text-align: right;'> 0.6474</td>
+<td style='padding-left:4ex; text-align: right;'> 1.7140</td>
+</tr>
+<tr>
+<td style='text-align: left;'>rtype --- 3:6</td>
+<td style='padding-left:4ex; text-align: right;'>6.00000</td>
+<td style='padding-left:4ex; text-align: right;'>3.0000</td>
+<td style='padding-left:4ex; text-align: right;'></td>
+<td style='padding-left:4ex; text-align: right;'>-0.26770</td>
+<td style='padding-left:4ex; text-align: right;'>0.3832</td>
+<td style='padding-left:4ex; text-align: right;'>-1.0190</td>
+<td style='padding-left:4ex; text-align: right;'> 0.4834</td>
+</tr>
+<tr>
+<td style='text-align: left;'>&emsp;<em>Odds Ratio</em></td>
+<td style='padding-left:4ex; text-align: right;'>6.00000</td>
+<td style='padding-left:4ex; text-align: right;'>3.0000</td>
+<td style='padding-left:4ex; text-align: right;'></td>
+<td style='padding-left:4ex; text-align: right;'> 0.76520</td>
+<td style='padding-left:4ex; text-align: right;'></td>
+<td style='padding-left:4ex; text-align: right;'> 0.3611</td>
+<td style='padding-left:4ex; text-align: right;'> 1.6220</td>
+</tr>
+<tr>
+<td style='text-align: left;'>rtype --- 4:6</td>
+<td style='padding-left:4ex; text-align: right;'>6.00000</td>
+<td style='padding-left:4ex; text-align: right;'>4.0000</td>
+<td style='padding-left:4ex; text-align: right;'></td>
+<td style='padding-left:4ex; text-align: right;'> 1.15000</td>
+<td style='padding-left:4ex; text-align: right;'>0.4418</td>
+<td style='padding-left:4ex; text-align: right;'> 0.2845</td>
+<td style='padding-left:4ex; text-align: right;'> 2.0160</td>
+</tr>
+<tr>
+<td style='text-align: left;'>&emsp;<em>Odds Ratio</em></td>
+<td style='padding-left:4ex; text-align: right;'>6.00000</td>
+<td style='padding-left:4ex; text-align: right;'>4.0000</td>
+<td style='padding-left:4ex; text-align: right;'></td>
+<td style='padding-left:4ex; text-align: right;'> 3.16000</td>
+<td style='padding-left:4ex; text-align: right;'></td>
+<td style='padding-left:4ex; text-align: right;'> 1.3290</td>
+<td style='padding-left:4ex; text-align: right;'> 7.5110</td>
+</tr>
+<tr>
+<td style='text-align: left;'>rtype --- 5:6</td>
+<td style='padding-left:4ex; text-align: right;'>6.00000</td>
+<td style='padding-left:4ex; text-align: right;'>5.0000</td>
+<td style='padding-left:4ex; text-align: right;'></td>
+<td style='padding-left:4ex; text-align: right;'> 0.04104</td>
+<td style='padding-left:4ex; text-align: right;'>0.4848</td>
+<td style='padding-left:4ex; text-align: right;'>-0.9092</td>
+<td style='padding-left:4ex; text-align: right;'> 0.9913</td>
+</tr>
+<tr>
+<td style='border-bottom: 2px solid grey; text-align: left;'>&emsp;<em>Odds Ratio</em></td>
+<td style='padding-left:4ex; border-bottom: 2px solid grey; text-align: right;'>6.00000</td>
+<td style='padding-left:4ex; border-bottom: 2px solid grey; text-align: right;'>5.0000</td>
+<td style='padding-left:4ex; border-bottom: 2px solid grey; text-align: right;'></td>
+<td style='padding-left:4ex; border-bottom: 2px solid grey; text-align: right;'> 1.04200</td>
+<td style='padding-left:4ex; border-bottom: 2px solid grey; text-align: right;'></td>
+<td style='padding-left:4ex; border-bottom: 2px solid grey; text-align: right;'> 0.4028</td>
+<td style='padding-left:4ex; border-bottom: 2px solid grey; text-align: right;'> 2.6950</td>
+</tr>
+</tbody>
+</table>
+
+]
+&lt;/small&gt;&lt;/small&gt;&lt;/small&gt;
+
+---
+
+... with this:
+
+&lt;br&gt;
+
+&lt;center&gt;
+
+&lt;img src="Figures/unnamed-chunk-14-1.png" style="display: block; margin: auto;" /&gt;
+
+&lt;/center&gt;
+
+---
+
+... or this:
+
+&lt;br&gt;
+
+&lt;center&gt;
+
+&lt;div class="figure"&gt;
+&lt;img src="Figures/unnamed-chunk-15-1.png" alt="&amp;lt;small&amp;gt;&amp;lt;small&amp;gt;Non-linear regression model showing the simultaneous effect, on the dependent variable permeability ratio (Kmax/k90), of changing two continuous variables (helium porosity and photoelectric capture cross-section log) while holding (marginalizing) all other variables fixed at their median.&amp;lt;/small&amp;gt;&amp;lt;/small&amp;gt;" width="700px" height="400px" /&gt;
+&lt;p class="caption"&gt;&lt;small&gt;&lt;small&gt;Non-linear regression model showing the simultaneous effect, on the dependent variable permeability ratio (Kmax/k90), of changing two continuous variables (helium porosity and photoelectric capture cross-section log) while holding (marginalizing) all other variables fixed at their median.&lt;/small&gt;&lt;/small&gt;&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;/center&gt;
+
+---
+
+background-image: url(Figures/malaysia.gif)
+background-size: cover
+
+&lt;small&gt;
+.footnote[[1] *New York Times. How Missing Jet’s Debris Could Have Floated to Réunion, 2015. &lt;a href="https://www.nytimes.com/interactive/2014/03/17/world/asia/search-for-flight-370.html"&gt; &lt;i class="fa fa-external-link"&gt;&lt;/i&gt;&lt;/a&gt;*] 
+&lt;/small&gt;
+
+---
+
+# Visualizing Principal Components
+Principal components allow us to describe our data with fewer new variables. These new variables are linear combinations of multiple variables. We call these new variables principal components.
+
+
+
+
+```
+## Standard deviations (1, .., p=6):
+## [1] 1.6000316 1.0858936 0.9579714 0.8818079 0.5800918 0.4784693
+## 
+## Rotation (n x k) = (6 x 6):
+##                PC1          PC2          PC3        PC4         PC5
+## gr      0.22818282  0.137547398 -0.934774742 -0.2328681  0.03109767
+## rhob    0.43271157  0.453422040  0.265822874 -0.2945947  0.63176533
+## pe      0.03040547 -0.830000205  0.003589022 -0.4300128  0.34543234
+## nphils -0.48514647 -0.001751888 -0.221395134  0.5036248  0.67809619
+## lld     0.54616385 -0.153463229  0.042668603  0.3027975  0.12771134
+## lls     0.47550685 -0.251067310 -0.068447679  0.5733682 -0.06676349
+##                 PC6
+## gr      0.003858898
+## rhob   -0.224930842
+## pe     -0.076991994
+## nphils  0.046493127
+## lld     0.753881245
+## lls    -0.610708536
+```
+
+---
+
+# Visualizing Principal Components
+
+&lt;img src="Figures/unnamed-chunk-17-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Visualizing CART Models
+CART stands for **Classification and Regression Trees** a non-parametric type of model. Hypothetically, let's fit a model to predict rock type using `depth` and `helium.porosity` and visualize the results:
+
+&lt;img src="Figures/unnamed-chunk-18-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Visually Comparing Multiple Models
+
+&lt;img src="Figures/unnamed-chunk-19-1.png" width="600px" height="500px" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Diagrams to Explain
+.pull-left[
+
+While not showing a model per-se, diagrams can help make unintuitive topics more transparent. Here, because of the low prevalence of drug consumption, we observe a high **false positive rate** (test says a person has consumed a drug, but in truth s/he has not), despite high test accuracy. 
+]
+
+.pull-right[
+&lt;img src="Figures/ppv.png" width="700px"&gt;
+]
+
+&lt;small&gt;
+.footnote[[1] *Spiegelhalter et al. Visualizing Uncertainty About the Future. 2011 &lt;a href="http://science.sciencemag.org/content/333/6048/1393"&gt; &lt;i class="fa fa-external-link"&gt;&lt;/i&gt;&lt;/a&gt;*]
+&lt;/small&gt;
+
+
+---
+class: inverse, center, middle
+
+# 6. Tips &amp; Best Practices
+
+---
+
+class: middle
+
+&gt;    *Information displays should be documentary, comparative, causal and explanatory, quantified, multivariate, exploratory, skeptical.*  
+&lt;small&gt;&lt;small&gt;
+&gt;    -Edward R. Tufte, Visual Explanations: Images &amp; Quantities, Evidence &amp; Narrative (1997)
+&lt;/small&gt;&lt;/small&gt;
+
+---
+
+
+# General Graphing
+
+
+&lt;center&gt;
+&lt;img src="Figures/scatterplot.png" width="990px"&gt;
+&lt;/center&gt;
+
+---
+
+# Table Tips
+
+&lt;center&gt;
+&lt;img src="Figures/table.png" width="990px"&gt;
+&lt;/center&gt;
+
+&lt;small&gt;
+.footnote[[1] *Recreated from Ehrenberg, 1981 &lt;a href="https://www.stat.washington.edu/pds/stat423/Documents/Ehrenberg.numeracy.pdf"&gt; &lt;i class="fa fa-external-link"&gt;&lt;/i&gt;&lt;/a&gt;*]
+&lt;/small&gt;
+
+
+---
+
+# Use (and abuse) Smoothers
+
+
+
+.pull-left[
+Smoothers are incredibly useful in order to highlight possible **trends** in the data. One of the most popular and flexible smoother is Cleveland's [**LOESS**](https://en.wikipedia.org/wiki/Local_regression) (locally weighted least squares method).
+
+&lt;small&gt;
+
+* Non-linear
+* Built-in outlier control
+* Can control degree of smoothness
+* Works well even when one of the variables is binary
+
+&lt;/small&gt;
+
+&lt;img src="Figures/loess.svg" height="250px"&gt;
+
+]
+
+.pull-right[
+
+&lt;iframe width="492" height="316" src="Figures/loess.mp4" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt; 
+
+]
+
+
+---
+
+# Data-to-Ink Ratio
+
+.pull-left[
+###Chartjunk
+All visual elements in charts and graphs that are not necessary to comprehend the information represented on the graph, or that distract the viewer from this information. Instead, we want to achieve **rapid visual perception**. &lt;small&gt;(Tufte, 1983, 2006)&lt;/small&gt; 
+
+&lt;img src="Figures/junkchart2.png" width="340px"&gt;
+
+]
+
+.pull-right[
+###Data-to-ink ratio
+Of all the ink used in a graph, the amount of ink that **transports information**.  We want this to be high. &lt;small&gt;(Tufte, 1983, 2006)&lt;/small&gt;
+
+&lt;br&gt;&lt;br&gt;
+]
+
+---
+###Data-to-ink ratio
+
+&lt;br&gt;
+
+&lt;img src="Figures/chellenger.png" width="1000px"&gt;
+
+&lt;small&gt;
+.footnote[[1] *Recreated from Tufte, 1983. Visual Explanations: Images and Quantities, Evidence and Narrative &lt;a href="https://www.stat.washington.edu/pds/stat423/Documents/Ehrenberg.numeracy.pdf"&gt; &lt;i class="fa fa-external-link"&gt;&lt;/i&gt;&lt;/a&gt;*]
+&lt;/small&gt;
+
+---
+
+# Avoid Pies
+.pull-left[
+### Why
+Plenty of scientific evidence shows that humans are **bad at judging size and making comparisons from angles**. Pie charts do not facilitate comparison when slices are close in size nor can one sort numbers.
+
+![](Figures/pie.jpg)
+]
+.pull-right[
+### Exceptions
+Ok to use when there are few well distinct slices to represent. Because we are only good at judging slices that are ½ or ¼ of the total, we should aim to have **2-4 slices** at most.
+
+Avoid the **doughnut types**: they remove the angular information we need to draw visual comparisons.
+
+### Alternatives
+Use bar charts or dot plots.
+
+]
+
+---
+# The Type of Chart Affects Visual Judgement
+Experiments performed to quantify visual judgment of graphs: 25 years later, results have not changed.
+
+&lt;br&gt;
+
+&lt;center&gt;
+&lt;img src="Figures/cleveland.png" width="1000px"&gt;
+&lt;/center&gt;
+
+
+&lt;small&gt;
+.footnote[
+[1] *Cleveland and McGill, 1984 &lt;a href="http://info.slis.indiana.edu/~katy/S637-S11/cleveland84.pdf"&gt; &lt;i class="fa fa-external-link"&gt;&lt;/i&gt;&lt;/a&gt; and Heer and Bostok, 2010 &lt;a href="http://vis.stanford.edu/files/2010-MTurk-CHI.pdf"&gt; &lt;i class="fa fa-external-link"&gt;&lt;/i&gt;&lt;/a&gt;*
+]
+&lt;/small&gt;
+
+
+---
+
+# Avoid 3D
+.pull-left[
+### Why
+Removes clarity, adds obfuscation, inhibits comprehension, does not help retain information, third dimension is usually inexistent (and if it did exist, you would try to avoid it).
+
+### Exceptions
+Spatial data, interaction surfaces.
+
+### Advantages
+A reader is more likely to remember a 3D graph than a plain graph.
+]
+
+.pull-right[
+### Disadvantage
+A reader is more likely to be confused by a 3D graph than a plain graph.
+
+![](Figures/3d.png)
+]
+
+---
+# Visualizing High Density Data
+
+### Good...
+Add **transparency** (alpha). Easy and quick to implement: reveals underlying patterns but hides outliers and sparse data points.
+
+&lt;img src="Figures/unnamed-chunk-22-1.png" width="980px" height="250px" /&gt;
+
+---
+
+# Visualizing High Density Data
+
+### Better...
+Use **binning techniques** for high density data (they've been around since the mid 80's!). A little harder to read, but won't miss outliers and sparse data.
+
+
+&lt;img src="Figures/unnamed-chunk-23-1.png" width="980px" height="350px" /&gt;
+
+---
+
+# Visualizing High Density Data
+
+### Best...
+**Critically assess** whether you need BIG data in the first place: unless outliers are the main focus of analysis, it's often satisfactory to **sample** the data.
+
+&lt;img src="Figures/unnamed-chunk-24-1.png" width="300px" height="280px" /&gt;
+
+
+&lt;small&gt;
+.footnote[
+[1] *If you are unconvinced, ask yourself: do I really have the whole population despite a huge dataset? Big data provides no protection against bias &lt;a href="https://www.e-publications.org/ims/submission/AOAS/user/submissionFile/34436?confirm=7e3fbb22"&gt; &lt;i class="fa fa-external-link"&gt;&lt;/i&gt;&lt;/a&gt;*
+]
+&lt;/small&gt;
+
+---
+
+# Visualizing Changes Over Time
+
+.pull-left[
+&lt;img src="Figures/timechange.png" width="540px"&gt;
+]
+
+.pull-right[
+* Works well when the data is not huge. 
+* Best if stratified.
+* x-axis needs not be time, but best if ordinal.
+]
+
+&lt;small&gt;
+.footnote[
+[1] *Harrell, 2017 &lt;a href="http://www.fharrell.com/doc/bbr.pdf"&gt; &lt;i class="fa fa-external-link"&gt;&lt;/i&gt;&lt;/a&gt;*
+]
+&lt;/small&gt;
+---
+
+
+# Choosing Appropriate Color
+Choice of color is often subject to "*misguided artistry*". There are numerous empirically validated color scales, so the analyst's job is made significantly easier. 
+.pull-left[
+&lt;img src="Figures/colorbrewer.png" width="450px"&gt;
+]
+
+
+
+.pull-right[
+&lt;img src="Figures/colorerror.png" width="280px"&gt;
+&lt;br&gt;
+&lt;small&gt;&lt;small&gt;
+*...finally, we confirmed that a rainbow colormap (jet) does indeed perform the worst overall in terms of both time and error, and should be jettisoned.*
+&lt;/small&gt;&lt;/small&gt;
+]
+
+
+&lt;small&gt;&lt;small&gt;
+.footnote[
+[1] *Brewer. Colorbrewer 2.0: Color Advice for Cartography &lt;a href="http://colorbrewer2.org/"&gt; &lt;i class="fa fa-external-link"&gt;&lt;/i&gt;&lt;/a&gt;*  
+[2] *Liu, Heer. Somewhere Over the Rainbow: An Empirical Assessment of Quantitative Colormaps. 2018 &lt;a href="https://idl.cs.washington.edu/files/2018-QuantitativeColor-CHI.pdf"&gt; &lt;i class="fa fa-external-link"&gt;&lt;/i&gt;&lt;/a&gt;*
+&lt;/small&gt;&lt;/small&gt;
+]
+
+---
+
+# Show the Uncertainty
+We need to visualize the uncertainty in order to make optimal decisions.
+
+.pull-left[
+&lt;br&gt;
+&lt;img src="Figures/jobnumbers.gif" width="500px"&gt;
+]
+
+.pull-right[
+&lt;img src="Figures/uncertainty.png" width="500px"&gt;
+]
+
+
+&lt;small&gt;
+.footnote[
+[1] *New York Times. How Not to Be Misled by the Jobs Report, 2014 &lt;a href="https://www.nytimes.com/2014/05/02/upshot/how-not-to-be-misled-by-the-jobs-report.html"&gt; &lt;i class="fa fa-external-link"&gt;&lt;/i&gt;&lt;/a&gt;*  
+[2] *Chato Osio and Hamon. 2017 &lt;a href="http://www.flr-project.org/doc/ggplotFL_plotting_FLR_objects_with_ggplot2.html"&gt; &lt;i class="fa fa-external-link"&gt;&lt;/i&gt;&lt;/a&gt;*
+
+]
+&lt;/small&gt;
+
+
+---
+class: center, middle
+
+&lt;img src="Figures/choosing-a-good-chart1.png" width="880px"&gt;
+
+
+---
+class: center, middle
+
+&lt;img src="Figures/datatoviz.png" width="780px"&gt;
+
+&lt;small&gt;&lt;small&gt;
+.footnote[
+[1] *Holtz Y., Healy, C. From Data to Viz. 2018 &lt;a href="https://www.data-to-viz.com/index.html"&gt; &lt;i class="fa fa-external-link"&gt;&lt;/i&gt;&lt;/a&gt;*  
+]
+&lt;/small&gt;&lt;/small&gt;
+
+
+
+
+---
+# Small Multiples
+
+A series of very similar graphs where the eye is drawn on comparing differences among them.
+
+&lt;img src="Figures/small_multiple.png" width="660px"&gt;
+
+
+
+
+&lt;small&gt;
+*(1) Source &lt;a href="http://thedailyviz.com/2016/12/14/four-decades-of-state-unemployment-rates-in-small-multiples-part-2/"&gt; &lt;i class="fa fa-external-link"&gt;&lt;/i&gt;&lt;/a&gt;*
+&lt;/small&gt;
+
+
+---
+# Should We Anthropomorphize Visualizations?
+
+*...to attribute human form or personality to things not human*
+
+&lt;br&gt;
+
+.pull-left[
+In 2017, Boy et al. (1) conducted visual experiments on 284 particpants. They found **no evidence** that anthropomorphizing visualizations has benefits on empathy.
+]
+
+.pull-right[
+&lt;img src="Figures/anthro.png" width="300px"&gt;
+]
+
+&lt;br&gt;&lt;br&gt;
+
+&lt;small&gt;
+*(1) Boy J. et al. Showing People Behind Data: Does Anthropomorphizing Visualizations Elicit More Empathy for Human Rights Data?* &lt;a href="https://dl.acm.org/citation.cfm?doid=3025453.3025512"&gt; &lt;i class="fa fa-external-link"&gt;&lt;/i&gt;&lt;/a&gt;
+&lt;/small&gt;
+
+---
+
+# Icon Arrays
+
+.pull-left[**Icon arrays** (aka pictograms) are visual tools to communicate risk. 
+
+Gigerenzer (2014) showed how fourth graders can solve problems with icon arrays that doctors have trouble solving without. 
+
+Icon array avoid **framing** (e.g. [99% fat free](#11)), **denominator neglec**t and **risk distortion**.
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+&lt;small&gt;&lt;small&gt;
+*(1) Gigerenzer, G. “Risk Savvy. How to make Good Decisions” (2014)  p. 248* &lt;a href="https://www.amazon.ca/Risk-Savvy-Make-Good-Decisions/dp/0143127101"&gt; &lt;i class="fa fa-external-link"&gt;&lt;/i&gt;&lt;/a&gt;  
+
+*(2) Figure: average number of women on Canadian boards by industry (based on self-disclosed data, 2015).*
+
+&lt;/small&gt;&lt;/small&gt;
+
+]
+
+.pull-right[
+&lt;img src="Figures/iconarray.png" width="400px"&gt;
+]
+
+
+
+---
+
+class: inverse, center, middle
+
+# 7. What to Look for in Visualization Tools? An Opinionated List
+
+---
+
+# What to Look for in Visualization Tools? An Opinionated List
+
+Goal 1: *to identify, highlight features or relationships*  
+Goal 2: *to summarize, communicate and engage (telling a story)*
+
+
+&lt;small&gt;&lt;small&gt;
+
+| Evaluation Item                       	| Notes                                                                                                                                       	|
+|---------------------------------------	|---------------------------------------------------------------------------------------------------------------------------------------------	|
+| Who is it for?                        	| Identify the users and consumers. Likely 2-3 streams.                                                                                       	|
+| Goal 1 or goal 2?                     	| Data visualization vs. visual storytelling                                                                                                  	|
+| No one size fits all                  	| General purpose vs. special purpose                                                                                                         	|
+| Data preparation approach             	| Visual composition framework                                                                                                                	|
+| Data preparation capabilities         	| Joins, filter, aggregate, sample, rank, reshape, append, grouping, text extraction, logical operators, mathematical expressions             	|
+| Handling of dates and times           	| Human readable and adherence to ISO standards.                                                                                              	|
+| Time series data preparation          	| Rolling windows, date padding, durations, rolling statistics, smart aggregations                                                            	|
+| Breadth of statistics for aggregation 	| Mean, percentiles, ranks, min/max, counts, totals, conditional statistics, proportions, duration, harmonic mean, geometric mean, sd, IQR... 	|
+| Missing values                        	| Appropriate handling/warning of missing data                                                                                                	|
+| Ability to show uncertainty           	| Confidence bands, error bars, rangeplots                                                                                                    	|
+| General purpose smoothers             	| LOESS, exponential smoothing                                                                                                                	|
+| Quality of visualizations             	| Avoids or encourage chartjunk                                                                                                               	|
+| Breadth of visualizations             	| Standard graphs and modern graphs (e.g. ridgeline plots, violin plots, circular migration plots, word clouds)                               	|                             	|                                                     	|
+
+&lt;/small&gt;&lt;/small&gt;
+
+---
+# What to Look for in Visualization Tools? An Opinionated List
+
+&lt;small&gt;&lt;small&gt;
+
+| Evaluation Item 	| Notes                                                                                     	|
+|-----------------	|-------------------------------------------------------------------------------------------	|
+| Learning curve  	| Effort and time                                                                           	|
+| Community size  	| Extremely important! Forum, discussion boards, conferences, books, blogs, YouTube, MOOC's 	|
+| Extensibility   	| Community contribute added features                                                       	|
+| Extensibility   	| Play nice with R, Python?                                                                 	|
+| Connectivity    	| Beyond common connections. E.g. API's Bloomberg, weather, social media                    	|
+
+&lt;/small&gt;&lt;/small&gt;
+
+Don't over-rely on IT advisory firms.
+
+When evaluating tools, **weighting** and **scoring** tend to be arbitrary and subjective. Scales are also arbitrary with little scientific basis. This usually results in poor choices. The resulting scoring matrices can be "*worse than useless, leading to worse-than-random decisions*"(1).
+
+Favour a **thorough qualitative evaluation**, ideally from a **pilot**. 
+
+
+&lt;small&gt;
+.footnote[[1] *Cox LA Jr. What's wrong with risk matrices? Risk Anal. 2008 Apr &lt;a href="https://www.ncbi.nlm.nih.gov/pubmed/18419665"&gt; &lt;i class="fa fa-external-link"&gt;&lt;/i&gt;&lt;/a&gt;*] 
+&lt;/small&gt;
+---
+
+# What to Look for in Visualization Tools? An Opnionated List
+Remember Tufte: *Numbers become evidence by being in relation to*. Does the tool encourage comparisons? Does it make it easy? A simple test is to plot a stratified box-plot.
+
+![](Figures/unnamed-chunk-25-1.png)&lt;!-- --&gt;
+
+
+---
+
+class: middle
+
+&gt;    *An approximate answer to the right problem is worth a good deal more than an exact answer to an approximate problem*  
+&lt;small&gt;&lt;small&gt;
+&gt;    -John Tukey
+&lt;/small&gt;&lt;/small&gt;
+
+---
+
+class: inverse, center, middle
+
+# 8. References
+
+---
+
+class: center, middle
+
+&lt;img src="Figures/books.png" width="1000px"&gt;
+
+
+---
+
+class: center, middle
+
+&lt;small&gt;
+
+| Author                                    	| Title                                	|
+|---------------------------------------	|-------------------------------------------------------------------------------	|
+| Tufte, E. R. (1983)                   	| The Visual Display Of Quantitative Information                                	|
+| Tufte, E. R. (1990)                   	| Envisioning Information                                                       	|
+| Tukey, J. W. (1977)                   	| Exploratory Data Analysis                                                     	|
+| Few, S. (2012)                        	| Show Me The Numbers. Designing Tables And Graph To Enlighten.                 	|
+| Chiasson T., Gregory D. et al. (2014) 	| Data + Design                                                                 	|
+| Ehrenberg, A.S.C. (1981)              	| The Problem Of Numeracy. The American Statistician, Vol. 35, N. 2             	|
+| Wilkinson, L. (2005)                  	| The Grammar Of Graphics                                                       	|
+| Simon, H.A. (1996)                    	| The Sciences Of The Artificial.                                               	|
+| Cleveland, W.S. (1985)                	| The Elements Of Graphing Data.                                                	|
+| Yau, N. (2011)                        	| Visualize This. The Flowingdata Guide To Design, Visualization And Statistics 	|
+| Good P.I., Hardin J.W. (2012)         	| Common Errors In Statistics (And How To Avoid Them)                           	|
+| Gelman A., Unwin A. (2012)            	| Infovis And Statistical Graphics: Different Goals, Different Looks            	|
+
+&lt;/small&gt;
+
+---
+background-image: url(Figures/background2.jpg)
+background-size: cover
+class: inverse, center, middle
+
+# Thank you
+
+**Thomas Speidel**  
+thomas@speidel.ca &lt;a href="mailto:thomas@speidel.ca"&gt; &lt;i class="fa fa-external-link"&gt;&lt;/i&gt;&lt;/a&gt;   
+ca.linkedin.com/in/speidel/ &lt;a href="http://ca.linkedin.com/in/speidel"&gt; &lt;i class="fa fa-external-link"&gt;&lt;/i&gt;&lt;/a&gt;   
+alternative-stats.netlify.com &lt;a href="http://alternative-stats.netlify.com"&gt; &lt;i class="fa fa-external-link"&gt;&lt;/i&gt;&lt;/a&gt;   
+
+&lt;br&gt;
+&lt;small&gt;&lt;small&gt;
+
+*This presentation and most of the graphs were produced in [**R**](https://en.wikipedia.org/wiki/R_(programming_language), a programming language and software &lt;br&gt; environment for statistical computing and graphics. The [Xaringan](https://slides.yihui.name/xaringan/#1) package was used for as the presentation template.*
+
+&lt;img style="margin: 25px 20px 1px 1px;" src="Figures/Rlogo.png" width="10%"&gt;
+
+
+&lt;/small&gt;&lt;/small&gt;
+    </textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function() {
+  var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})();</script>
+
+<script>
+(function() {
+  var i, text, code, codes = document.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+})();
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

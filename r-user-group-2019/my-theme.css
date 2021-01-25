@@ -1,0 +1,19 @@
+.title-slide {
+  background-image: url(Figures/AdobeStock_29300435_2.jpeg);
+  background-size: cover;
+}
+
+.title-slide h1 {
+  font-size: 300%;
+  color: #FFFFFF;
+}
+
+.title-slide h2, .title-slide h3 {
+  color: #FFFFFF; 
+  line-height: 1.5em;
+}
+
+
+@import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+.remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }

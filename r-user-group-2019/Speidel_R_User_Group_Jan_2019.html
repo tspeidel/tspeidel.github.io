@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Some Common (and Less Common) Measures of Correlation and their Implementation in the R Language</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Thomas Speidel, P.Stat., Data Scientist" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link href="libs/remark-css/default-fonts.css" rel="stylesheet" />
+    <link href="libs/font-awesome/css/all.css" rel="stylesheet" />
+    <link href="libs/font-awesome/css/v4-shims.css" rel="stylesheet" />
+    <link rel="stylesheet" href="my-theme.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: left, middle, title-slide
+
+# Some Common (and Less Common) Measures of Correlation and their Implementation in the R Language
+## Calgary R User Group
+### <strong>Thomas Speidel</strong>, P.Stat., Data Scientist
+### 2019/01/16
+
+---
+
+
+
+
+
+
+# Data Manifesto
+
+Data, in an by themselves, do not directly create knowledge. While efforts to collect and store data have increased dramatically in recent years, nearly absent is a focus on knowledge creation.  In the age of **Big Data**, the availability of vast amounts of information can coexist with the **absence of knowledge**. 
+
+**Data cannot speak for themselves**.  It is in when we interpret data that knowledge is created. My focus is on **bridging the gap between data and knowledge creation**. That gap is filled by statistics and evidence based decision making.
+
+---
+
+class: inverse, center, middle
+
+# 1. Correlation
+
+
+
+---
+
+# What's a Correlation?
+
+*  A quantity measuring the **strength of the association** between two variables.
+
+*  Can go by different names: **correlation**, **association** and **dependence** are the most common ones.
+
+*  Unitless
+
+*  Useful as an **initial assessemnt** of the data (preferably in conjunction with a scatter plot matrix or similar graph)
+
+*  Should not be used if variables are not selected at random (e.g. in an experiment where only people above a certain BMI are seletced and then we want to correlate BMI with some other variable) 
+
+*  Can be **deceptive** (e.g. two variables can be dependent on a 3^rd^ one: in the summer water consumption and ice cream sales correlated only because they both depend on temperatures)
+
+&lt;br&gt;
+
+---
+
+background-image: url(Figures/calgary-1278085_1920.jpg)
+background-size: cover
+
+##Name this bulding
+
+&lt;!-- Answer Bow Valley Square --&gt;
+
+---
+
+class: inverse, center, middle
+
+# 2. Applications in the R Language
+
+---
+
+# Simulated Data 1
+.pull-left[
+
+### Linear
+*  Linear = straight line
+
+Examples
+* Price vs. size of house
+* Gas consumption vs. size of engine
+* Education vs. salary
+]
+
+.pull-right[
+
+![](Figures/unnamed-chunk-1-1.png)&lt;!-- --&gt;
+]
+
+---
+
+# Simulated Data 2
+.pull-left[
+
+### Non-Monotonic
+*  Non-linear = curvy
+*  Non-monotonic = changes direction
+
+Examples
+* Mortality vs. age 
+* Several physical properties
+* Interest rates and exchange rates ([source](https://www.researchgate.net/publication/228908571_The_Non-Monotonic_Relationship_between_Interest_Rates_and_Exchange_Rates))
+]
+
+.pull-right[
+
+![](Figures/unnamed-chunk-2-1.png)&lt;!-- --&gt;
+]
+
+
+---
+
+background-image: url(Figures/calgary-1751845_1920.jpg)
+background-size: cover
+
+##Name this sculpture
+
+&lt;!-- Head of a young girl called “Wonderland” created by Spanish sculptor Jaume Plensa  --&gt;
+
+---
+
+# Strength of Correlation
+
+Often quantified as follows:
+
+| Value     	| Strength    	|
+|-----------	|-------------	|
+| 0.00-0.19 	| Very weak   	|
+| 0.20-0.39 	| Weak        	|
+| 0.40-0.59 	| Moderate    	|
+| 0.60-0.79 	| Strong      	|
+| 0.80-1.0  	| Very Strong 	|
+
+&lt;br&gt;
+
+There are limitations with quantifying strength of correlation:
+
+* Based on linear correlations (e.g. Pearson)
+* Depends on context (e.g. 0.15 could be considered *strong* in some areas)
+
+
+---
+
+# Pearson
+
+.pull-left[
+&lt;img src="Figures/pearson.png" width="300px"&gt; 
+]
+
+.pull-right[
+*  Captures *linear* correlations between pairs of *continuous* variables
+
+*  Ranges between -1 (neg. correlation: low values of one var tend to occurr with high values of the other) and +1 (pos. correlation)
+
+*  0 indicates no linear relationship. 1 indicates one variable is an exact linear function of the other
+]
+
+
+---
+
+## Pearson Example
+
+
+```r
+(p1 &lt;- cor(data_1$x1, data_1$x2, method = c("pearson")))
+```
+
+```
+## [1] 0.86800276
+```
+
+```r
+(p2 &lt;- cor(data_2$x1, data_2$x2, method = c("pearson")))
+```
+
+```
+## [1] -0.3215703
+```
+
+*  The Pearson correlation detects a strong linear positive correlation in `dataset_1` (r = 0.87)
+*  The Pearson correlation detects a weak linear positive correlation in `dataset_2` (r = -0.32)
+
+---
+## Pearson Example
+
+We can test whether the observed correlation is significantly different from 0:
+
+
+```r
+(p1.test &lt;- cor.test(data_1$x1, data_1$x2, method = c("pearson")))
+```
+
+```
+## 
+## 	Pearson's product-moment correlation
+## 
+## data:  data_1$x1 and data_1$x2
+## t = 24.597, df = 198, p-value &lt; 2.22e-16
+## alternative hypothesis: true correlation is not equal to 0
+## 95 percent confidence interval:
+##  0.82910938 0.89853533
+## sample estimates:
+##        cor 
+## 0.86800276
+```
+
+The 95% confidence interval is 0.83 - 0.9 (p-value &lt;0.01) providing very strong evidence that the observed correlation is **significantly different from 0**. 
+
+---
+
+## Pearson Example
+
+Dataset 2:
+
+
+```r
+(p1.test &lt;- cor.test(data_2$x1, data_2$x2, method = c("pearson")))
+```
+
+```
+## 
+## 	Pearson's product-moment correlation
+## 
+## data:  data_2$x1 and data_2$x2
+## t = -4.77871, df = 198, p-value = 0.0000034321
+## alternative hypothesis: true correlation is not equal to 0
+## 95 percent confidence interval:
+##  -0.44065164 -0.19136712
+## sample estimates:
+##        cor 
+## -0.3215703
+```
+
+The 95% confidence interval is -0.44 - -0.19 (p-value &lt;0.01) providing very strong evidence that the observed correlation is **significantly different from 0**. 
+
+---
+
+
+
+# Spearman
+
+.pull-left[
+&lt;img src="Figures/spearman.jpeg" width="300px"&gt; 
+]
+
+.pull-right[
+* Captures linear and non-linear correlations between pairs of continuous variables
+
+* Just a Person correlation applied to the ranks 
+
+* Appropriate if relationship is non-linear but monotonic
+
+* Kandall's tau is also based on ranks but uses concordant and discordant pairs
+]
+
+---
+## Spearman Example
+
+
+```r
+(p1 &lt;- cor(data_1$x1, data_1$x2, method = c("spearman")))
+```
+
+```
+## [1] 0.85520888
+```
+
+```r
+(p2 &lt;- cor(data_2$x1, data_2$x2, method = c("spearman")))
+```
+
+```
+## [1] -0.17955749
+```
+
+* The Spearman correlation detects a strong linear correlation in `dataset_1` (rho = 0.86)
+* The Spearman correlation detects a weak linear correlation in `dataset_2` (rho = -0.18)
+
+---
+
+## Spearman Example
+
+We can test whether the observed correlation is significantly different from 0:
+
+
+```r
+(p1.test &lt;- cor.test(data_1$x1, data_1$x2, method = c("spearman")))
+```
+
+```
+## 
+## 	Spearman's rank correlation rho
+## 
+## data:  data_1$x1 and data_1$x2
+## S = 193050, p-value &lt; 2.22e-16
+## alternative hypothesis: true rho is not equal to 0
+## sample estimates:
+##        rho 
+## 0.85520888
+```
+
+With a p-value &lt;0.01 there's very strong evidence that the observed correlation is **significantly different from 0**. 
+
+---
+
+## Spearman Example
+
+Dataset 2:
+
+
+```r
+(p1.test &lt;- cor.test(data_2$x1, data_2$x2, method = c("spearman")))
+```
+
+```
+## 
+## 	Spearman's rank correlation rho
+## 
+## data:  data_2$x1 and data_2$x2
+## S = 1572704, p-value = 0.011041
+## alternative hypothesis: true rho is not equal to 0
+## sample estimates:
+##         rho 
+## -0.17955749
+```
+
+With a p-value = 0.01 there's strong evidence that the observed correlation is **significantly different from 0**. 
+
+
+---
+
+## Spearman Generalization
+Alternative based on squared ranks
+
+
+```r
+spearman2(data_2$x1, data_2$x2)
+```
+
+```
+##          rho2             F           df1           df2             P 
+##   0.032240892   6.596369416   1.000000000 198.000000000   0.010955318 
+##             n Adjusted rho2 
+## 200.000000000   0.027353220
+```
+
+---
+
+background-image: url(Figures/famous-landmarks-calgary-1485462870.jpg)
+background-size: cover
+
+##Name this bridge
+
+&lt;!-- Peace bridge --&gt;
+
+---
+
+# Hoeffding's D
+
+.pull-left[
+&lt;img src="Figures/hoeffding.jpg" width="300px"&gt; 
+]
+
+.pull-right[
+* Based on ranks 
+
+* Ranges from -0.5 to 1 (if there are no ties)
+
+* Can detect both non-linear and mild non-monotonic correlations
+
+* Computationally demanding
+]
+
+---
+
+## Hoeffding's D Examples
+
+
+```r
+## Uses Frank Harrell's Hmisc package. "D used here is 30 times Hoeffding’s original D, and ranges from -0.5 to 1.0 if there are no ties in the data"
+library(Hmisc)
+(h1 &lt;- hoeffd(data_1$x1, data_1$x2)$D[1,2])
+```
+
+```
+## [1] 0.34238389
+```
+
+```r
+(h2 &lt;- hoeffd(data_2$x1, data_2$x2)$D[1,2])
+```
+
+```
+## [1] 0.084246206
+```
+
+
+* The Hoeffding's D correlation detects a correlation in `dataset_1` (D = 0.34)
+* The Hoeffding's D correlation detects a correlation in `dataset_2` (D = 0.08)
+
+---
+
+# Distance Correlation
+
+.pull-left[
+&lt;img src="Figures/szekely.jpg" width="300px"&gt; 
+]
+
+.pull-right[
+* Proposed by Szekely and Rizzo in 2007
+
+* Can detect both linear and non-linear correlations
+
+* Can detect non-monotonic correlations
+
+* Ranges between 0 and 1
+
+]
+
+
+---
+
+
+```r
+library(energy)
+(dist1 &lt;- dcor(data_1$x1, data_1$x2))
+```
+
+```
+## [1] 0.82670593
+```
+
+```r
+(dist2 &lt;- dcor(data_2$x1, data_2$x2))
+```
+
+```
+## [1] 0.5487651
+```
+
+```r
+dcor.test(data_1$x1, data_1$x2, index = 1.0, R = 1000)
+```
+
+```
+## 
+## 	dCor independence test (permutation test)
+## 
+## data:  index 1, replicates 1000
+## dCor = 0.826706, p-value = 0.000999
+## sample estimates:
+##       dCov       dCor    dVar(X)    dVar(Y) 
+## 0.51259840 0.82670593 0.57924702 0.66372561
+```
+
+```r
+dcor.test(data_2$x1, data_2$x2, index = 1.0, R = 1000)
+```
+
+```
+## 
+## 	dCor independence test (permutation test)
+## 
+## data:  index 1, replicates 1000
+## dCor = 0.548765, p-value = 0.000999
+## sample estimates:
+##       dCov       dCor    dVar(X)    dVar(Y) 
+## 0.30037882 0.54876510 0.59164928 0.50640888
+```
+
+---
+
+background-image: url(Figures/PANO_20180210_103710.jpg)
+background-size: cover
+
+##Name this park
+
+&lt;!-- Bowness park --&gt;
+
+---
+
+# MIC
+
+* Maximal Information Coefficient
+
+* Non-linear
+
+* Somewhat controversial: e.g. low power =&gt; struggles to detect true correlations
+
+
+
+
+---
+
+# Polychoric, polyserial, point biserial
+
+* Used when one or both variables are binary, ordered etc.
+
+* More commonly found in psychology and social science
+
+
+
+---
+
+# Plotting in R
+
+Focus on several pairwise combinations at once: heatmaps/correlation matrix
+
+`corrplot`  
+`ggplot`  
+`ggally`  
+`d3heatmap` (htmlwidget)
+
+---
+
+# `corrplot` with Distance Correlation
+
+.pull-left[
+
+![](Figures/unnamed-chunk-12-1.png)&lt;!-- --&gt;
+]
+
+.pull-right[
+`corrplot` is very flexible (despite not being a ggplot). Great [vignette](https://cran.r-project.org/web/packages/corrplot/vignettes/corrplot-intro.html)
+]
+
+---
+
+#`ggcorr`
+
+![](Figures/unnamed-chunk-13-1.png)&lt;!-- --&gt;
+
+
+---
+
+background-image: url(Figures/bow-valley-ranche-restaurant-business.jpg)
+background-size: cover
+
+##Name this building
+
+&lt;!-- Bow valley ranch in fish creek park --&gt;
+
+---
+
+
+
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
