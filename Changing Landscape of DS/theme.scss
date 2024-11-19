@@ -1,0 +1,214 @@
+// Google Fonts
+@import url('https://fonts.googleapis.com/css2?family=Cabin+Condensed:wght@400;500;600;700&family=Cabin:ital,wght@0,400..700;1,400..700&family=Cardo:ital,wght@0,400;0,700;1,400&family=Crimson+Pro:ital,wght@0,200..900;1,200..900&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Cardo:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap');
+// Colors
+$white:    #fff !default;
+$gray-100: #f8f9fa !default;
+$gray-200: #e9ecef !default;
+$gray-300: #dee2e6 !default;
+$gray-400: #ced4da !default;
+$gray-500: #adb5bd !default;
+$gray-600: #6c757d !default;
+$gray-700: #495057 !default;
+$gray-800: #343a40 !default;
+$gray-900: #212529 !default;
+$black:    #000 !default;
+
+$primary: #D2042D  !default;
+$secondary: #4169E1 !default;
+$tertiary: #4CBB17 !default;
+$body-color:  $gray-900 !default;
+$body-bg: #FFFFF8;
+$navbar-bg: black !default;
+$navbar-fg: white;
+$code-block-bg: #f9f9f8 !default;
+
+
+// Font map (Cardo as replacement for ET Bembo, alternatively EB Garamond or Crimsoon Pro)
+:root {
+  --bs-body-font-family: 'Cardo', serif;
+}
+$font-family-base:  'Cardo' !default;
+$font-family-sans-serif:  'Cardo' !default;
+$headings-font-family:  'Cabin'    !default;
+$font-family-monospace: "DM Mono";
+
+
+body, p, ul {
+  font-family: 'Cardo', serif !important;
+  font-size: 100%;
+  line-height: 1.3;
+}
+
+.description {
+    color: black;
+}
+
+.content {
+  font-family: 'Cardo', serif !important;
+}
+
+@font-face {
+  font-family: "Cardo";
+}
+
+// Change font-family for tables and their elements
+.table {
+  font-family: 'Cabin Condensed', sans-serif;
+  font-size: 76% !important;
+  color: #515151;
+}
+
+/*-- scss:rules --*/
+.navbar-brand {
+  font-family: "Cabin" !important;
+}
+
+.badge.rounded-pill {
+  font-family: 'Cabin Condensed', sans-serif !important;
+}
+
+#title-block-header {
+  font-family: "Cardo" !important;
+}
+
+figure figcaption, figure figcaption em {
+    font-family: "Crimson Pro" !important;
+    line-height: 1.2;
+    font-style: italic !important;
+}
+
+blockquote p:last-child em {
+  font-family: "Crimson Pro" !important;
+  font-size: 100% !important; 
+}
+
+.callout-title-container.flex-fill {
+  font-family: "Crimson Pro" !important;
+}
+
+.callout-body-container.callout-body {
+  font-family: 'Cardo', serif !important;
+  font-size: 90% !important; 
+}
+
+#quarto-margin-sidebar {
+  font-family: "Cabin" !important;
+  font-size: 105%;
+}
+
+#title-block-header.quarto-title-block.default .quarto-title .title {
+  font-family: "Cabin", $headings-font-family;
+  font-size: $font-size-base * 2.6;
+  color: black !important;
+}
+
+#title-block-header.quarto-title-block.default .quarto-title-meta-author .quarto-title-meta-heading {
+  font-family: "Cabin", $headings-font-family;
+}
+
+#title-block-header.quarto-title-block.default .quarto-title-meta-author .quarto-title-meta-contents {
+  font-family: "Cabin", $headings-font-family;
+}
+
+#title-block-header.quarto-title-block.default .quarto-title-meta .quarto-title-meta-heading {
+  font-family: "Cabin", $headings-font-family;
+}
+
+#title-block-header.quarto-title-block.default .quarto-title-meta .quarto-title-meta-contents {
+  font-family: "Cabin", $headings-font-family;
+}
+
+#title-block-header.quarto-title-block.default .abstract-title {
+  font-family: "Cabin", $headings-font-family;
+}
+
+#title-block-header.quarto-title-block.default .abstract {
+  font-family: "Cabin";
+  font-size: $font-size-base * 1;
+}
+
+.navbar-dark .navbar-brand{
+  font-family: "Cabin", $headings-font-family;
+}
+
+.menu-text {
+  font-family: "Cabin", $headings-font-family;
+}
+
+.quarto-category {
+  font-family: "Cabin";
+}
+
+h3.no-anchor.listing-title {
+  font-family: "Cabin";
+}
+
+div.listing-category {
+  font-family: "Cabin";
+}
+
+
+
+/*-- scss:rules --*/
+.video-container {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%;
+  margin-bottom: 1rem;
+}
+
+.video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+img {
+  max-width: 100%;
+}
+
+
+// add some spacing between references in biblio list
+div.csl-entry {
+        clear: both;
+        margin-bottom: 10px;
+}
+
+// fix footer.center height
+.nav-footer-center {
+        min-height: 0em !important;
+}
+
+// icons
+.bi-heart-fill {
+        color: darkred;
+}
+
+// sidebar
+.sidebar-navigation li a {
+        line-height: 1.40;
+        color: var(--bs-body-color);
+        font-size: 13px;
+}
+
+.aa-Autocomplete .aa-Form,
+.aa-DetachedFormContainer .aa-Form {
+        background-color: rgba(233, 236, 239, 0.65) !important;
+}
+
+
+pre code {
+  padding-left: 5%;
+}
+
+pre code.sourceCode {
+  padding-left: 0;
+}
+
+.downlit code a:any-link {
+  text-decoration: underline;
+  text-decoration-color: #ccc;
+}
