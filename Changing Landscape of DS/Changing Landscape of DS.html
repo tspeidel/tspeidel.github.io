@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Thomas Speidel">
+<meta name="dcterms.date" content="2024-11-19">
+<meta name="description" content="The field of data science has gone through subtle but important changes in the past decade. In this essay, I pause to look back through the lens of my experience in order to understand (and speculate) what sparked these changes and how they’ve impacted the field overall.">
+
+<title>The Changing Landscape of Data Science</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="Changing Landscape of DS_files/libs/clipboard/clipboard.min.js"></script>
+<script src="Changing Landscape of DS_files/libs/quarto-html/quarto.js"></script>
+<script src="Changing Landscape of DS_files/libs/quarto-html/popper.min.js"></script>
+<script src="Changing Landscape of DS_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="Changing Landscape of DS_files/libs/quarto-html/anchor.min.js"></script>
+<link href="Changing Landscape of DS_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="Changing Landscape of DS_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="Changing Landscape of DS_files/libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="Changing Landscape of DS_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="Changing Landscape of DS_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="Changing Landscape of DS_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="Changing Landscape of DS_files/libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<script src="Changing Landscape of DS_files/libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="Changing Landscape of DS_files/libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="Changing Landscape of DS_files/libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
+<style>html{ scroll-behavior: smooth; }</style>
+<style>
+
+      .quarto-title-block .quarto-title-banner {
+        background-image: url(5992185.jpg);
+background-size: cover;
+      }
+</style>
+
+
+</head>
+
+<body>
+
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">The Changing Landscape of Data Science</h1>
+                  <div>
+        <div class="description">
+          The field of data science has gone through subtle but important changes in the past decade. In this essay, I pause to look back through the lens of my experience in order to understand (and speculate) what sparked these changes and how they’ve impacted the field overall.
+        </div>
+      </div>
+                </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Thomas Speidel </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">November 19, 2024</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#tldr" id="toc-tldr" class="nav-link active" data-scroll-target="#tldr"><span class="header-section-number">1</span> TL;DR</a></li>
+  <li><a href="#background" id="toc-background" class="nav-link" data-scroll-target="#background"><span class="header-section-number">2</span> Background</a></li>
+  <li><a href="#an-evolving-and-ever-changing-landscape" id="toc-an-evolving-and-ever-changing-landscape" class="nav-link" data-scroll-target="#an-evolving-and-ever-changing-landscape"><span class="header-section-number">3</span> An Evolving and Ever-Changing Landscape</a>
+  <ul class="collapse">
+  <li><a href="#humble-origins" id="toc-humble-origins" class="nav-link" data-scroll-target="#humble-origins"><span class="header-section-number">3.1</span> Humble Origins</a></li>
+  <li><a href="#the-domineering-role-of-technology" id="toc-the-domineering-role-of-technology" class="nav-link" data-scroll-target="#the-domineering-role-of-technology"><span class="header-section-number">3.2</span> The Domineering Role of Technology</a></li>
+  <li><a href="#what-happened-to-the-science-in-data-science" id="toc-what-happened-to-the-science-in-data-science" class="nav-link" data-scroll-target="#what-happened-to-the-science-in-data-science"><span class="header-section-number">3.3</span> What Happened to the “Science” in data science?</a></li>
+  <li><a href="#where-are-we-now" id="toc-where-are-we-now" class="nav-link" data-scroll-target="#where-are-we-now"><span class="header-section-number">3.4</span> Where Are We Now?</a></li>
+  <li><a href="#now-what-is-this-bad" id="toc-now-what-is-this-bad" class="nav-link" data-scroll-target="#now-what-is-this-bad"><span class="header-section-number">3.5</span> Now What? Is This Bad?</a></li>
+  </ul></li>
+  <li><a href="#conclusions" id="toc-conclusions" class="nav-link" data-scroll-target="#conclusions"><span class="header-section-number">4</span> Conclusions</a></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="Changing-Landscape-of-DS.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+</div>
+<main class="content quarto-banner-title-block page-columns page-full" id="quarto-document-content">
+
+
+
+
+
+<p><br></p>
+<section id="tldr" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="tldr"><span class="header-section-number">1</span> TL;DR</h2>
+<ol type="1">
+<li><p>Data science has undergone significant transformations over the past decade, influenced by several factors.</p></li>
+<li><p><strong>The Beginnings</strong>: Initially rooted in the scientific community, data science emerged from the convergence of fields like statistics, computer science, and operations research. This evolution was catalyzed by reduced costs of storage and computing, along with increased bandwidth, which in turn amplified the scale, velocity, and variety of data.</p></li>
+<li><p><strong>Interdisciplinary Nature</strong>: Unlike most STEM disciplines, data science did not formally exist until recently and has been driven by commercial rather than intellectual developments, leading to its constant reinvention.</p></li>
+<li><p><strong>Technology Firms’ Influence</strong>: By 2015, technology firms had recognized the potential of data science and made significant investments and acquisitions, often prioritizing revenue-generating aspects of the field. This focus frequently overshadowed important applications, scientific breakthroughs and new methods that may not require large-scale solutions or sophisticated technology stacks.</p></li>
+<li><p><strong>Scientific Challenges</strong>: The scientific aspect of data science involves experimentation, understanding, and failures which can be difficult to monetize and are often viewed with suspicion by organizations.</p></li>
+<li><p><strong>Democratization</strong>: As data science became more accessible, many practitioners entered the field from non-scientific backgrounds, often up-skilling through online courses or boot camps. As a result, the newest cohorts often lack experience in scientific inquiry, as well as the principles and procedures that ensure the validity and reliability of their work.</p></li>
+<li><p><strong>Current Developments</strong>: The field has faced four significant developments: (a) the influence of technology firms, (b) the complex relationship between business and science, (c) the democratization of data science, and (d) the advent of generative AI.</p></li>
+<li><p><strong>Evolving Focus</strong>: As a result, data science has shifted from being <em>insight-focused</em> to <em>data</em> and <em>product-focused</em>, resembling more the role of a developer in IT than that of a sophisticated analyst. Good data pipelines are now seen as more valuable than good models. The value of a data science initiative is often measured not by the quality of the insight and the decisions it helps support, but rather by the product’s deployment, uptake and sustainment.</p></li>
+<li><p><strong>Unmet needs</strong>: As a result, the need for insight-focused approaches in many areas of the organization may no longer be fully met by the data science professional.</p></li>
+<li><p><strong>Need for reform</strong>: Data science jobs need clarity. Curricula need to include research and principled methods of analysis. Hiring managers need to more accurately match relevant skills to the needs of the role. Organizations need to understand that there is no one-size-fits-all approach. A data scientist who excels at building good data pipelines may be a good data professional but not necessarily a strong scientist. Conversely, a data scientist who excels at generating valid insights from a model may be a good scientist but not necessarily a strong data professional. Roles that are focused on <em>insight discovery</em> may not always require to build data pipelines or deploy models in production.</p></li>
+</ol>
+<p><br><br></p>
+</section>
+<section id="background" class="level2 page-columns page-full" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="background"><span class="header-section-number">2</span> Background</h2>
+<p>The history of data science is rather convoluted as it is best understood as the convergence of multiple, yet historically isolated fields such as statistics, computer science and operations research to name a few. This convergence occurred more or less when key barriers of entry were lowered, specifically the costs of storage, computing, and the availability of large bandwidth.</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="Figures/ibm-hd.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="A 5 MB hard drive from IBM is being loaded into an airplane in 1956."><img src="Figures/ibm-hd.jpg" class="img-fluid figure-img" style="width:70.0%" alt="A 5 MB hard drive from IBM is being loaded into an airplane in 1956."></a></p>
+<figcaption><em>A 5 MB hard drive from IBM is being loaded into an airplane in 1956.</em></figcaption>
+</figure>
+</div>
+</div></div><p>One point I want to emphasize is that, unlike other formal STEM disciplines, data science did not formally exist until recently and has only now become an interdisciplinary field of study in post-secondary education. In other words, data science was “<em>motivated by commercial rather than intellectual developments</em>”<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. However, those commercial developments were largely built upon existing areas and tools.</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p><em>SAS started in 1976, R in the early 1970’s, Python in 1991. For algorithms: logistic regression was developed in 1958, neural networks in the 1950’s, cross-validation in 1974</em>.</p>
+</div></div><p>Why is this important? Because as data science evolved in industry, it lacked a formal, unified discipline, a unified set of nomenclature and norms, it lacked a body of knowledge to adhere to, and this explains in part its constant evolution. But there is more to it.</p>
+<p><br><br></p>
+</section>
+<section id="an-evolving-and-ever-changing-landscape" class="level2 page-columns page-full" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="an-evolving-and-ever-changing-landscape"><span class="header-section-number">3</span> An Evolving and Ever-Changing Landscape</h2>
+<p>Data science originated in the scientific community. Researchers used statistical and mathematical tools together with other computing software and hardware in order to test hypotheses, collect data, simulate outcomes and predict responses in order to understand the world around us.</p>
+<section id="humble-origins" class="level3 page-columns page-full" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="humble-origins"><span class="header-section-number">3.1</span> Humble Origins</h3>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p><em>Who invented the term? As far back as the early 1960’s, <a href="https://en.wikipedia.org/wiki/John_Tukey">John Tukey</a> called to reform statistical education into a science that learns from data. In 1997, <a href="https://en.wikipedia.org/wiki/C._F._Jeff_Wu">Jeff Wu</a> gave a speech at an inaugural lecture titled “Statistics = data science?”. In 2001, <a href="https://en.wikipedia.org/wiki/William_S._Cleveland">Bill Cleveland</a> suggests the term “data science” in a <a href="https://www.jstor.org/stable/1403527">paper</a></em>.</p>
+</div></div><p>Around 2012, the tools and skill-sets slowly begun making their presence in organizations, although, arguably, more mature organizations had started leveraging those skills much earlier. It was around this time or a few years later that we heard tongue in cheek definitions of data scientist as someone “<em>who is better at statistics than any software engineer and better at software engineering than any statistician</em>”.</p>
+<p><br></p>
+</section>
+<section id="the-domineering-role-of-technology" class="level3 page-columns page-full" data-number="3.2">
+<h3 data-number="3.2" class="anchored" data-anchor-id="the-domineering-role-of-technology"><span class="header-section-number">3.2</span> The Domineering Role of Technology</h3>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p><em>It would not be accurate to say that the data science tools and skills did not exist in government and corporations. Rather, they were not widespread. For instance, the SOUNDEX phonetic algorithm was utilized by the US Census as early as in the 1930s. In 1965, the Fellegi-Sunter theory developed at Statistics Canada, became of fundamental importance in record linkage as it enabled records from different data sources to be joined using non-unique identifiers. The AT&amp;T Bell Labs made so many landmark contributions to scientific computing and statistics, it would impossible to list them all here</em>.</p>
+</div></div><p>By 2015, technology firms had already figured out that we were at the dawn of a new era and began making large bets in the data science and adjacent spaces. These investments have included acquisitions and sponsorship of open-source projects.</p>
+<p>For example, in 2015, Microsoft acquired Revolution Analytics. A few years later, they acquired GitHub while continuing to integrate and expand these technologies in their Azure ecosystem. Additionally, Microsoft continued to make investments in various companies, including OpenAI, or supported and contributed towards open source projects such as Apache Spark (the underlying technology behind Databricks and Microsoft Azure Synapse). Microsoft was not the only player in this space, but it was arguably one of the pioneering large technology firms.</p>
+<p>In the current realm of data science, AI and machine learning, technology firms have dominated the discourse, often sidelining important applications and new methods that may not require large-scale solutions or sophisticated technology stacks.</p>
+<p><br></p>
+<blockquote class="blockquote">
+<em>…public dialog about these issues too often uses the term AI as an intellectual wildcard, one that makes it difficult to reason about the scope and consequences of emerging technology.</em> <br>
+<p align="right">
+Michael Jordan
+</p>
+</blockquote>
+<p><br></p>
+</section>
+<section id="what-happened-to-the-science-in-data-science" class="level3 page-columns page-full" data-number="3.3">
+<h3 data-number="3.3" class="anchored" data-anchor-id="what-happened-to-the-science-in-data-science"><span class="header-section-number">3.3</span> What Happened to the “Science” in data science?</h3>
+<p>The word “science”, has always been problematic for technology firms and other organizations alike: science relies on experimentation to explore and understand the world, often leading to failures that either yield no new knowledge or challenge our existing hypotheses. Monetizing science is challenging to say the least (ask a pharmaceutical company!): developing cycles can be exhaustingly long, funding it is not for your average venture capitalist, and the outcome is anything but certain.</p>
+<p>The principles of data science don’t have to be lengthy or costly. They are embedded into the data science process as a way of thinking: we start with extensive conversations with the subject matter experts, conduct literature reviews to understand existing research and build on established theories, prove and disprove our own hunches and expectations in exploratory data analysis, identify sources of uncertainty and measurement error, and precisely define the response in line with the objectives. All of this is a highly iterative process.</p>
+<p>In the first phase of data science, approximately from 2015 to 2020, practitioners were more focused on <em>insight generation</em> and attuned to the scientific method of inquiry. Indeed, many of the early practitioners were researchers because data science originated in academia and research institutes.</p>
+<p>As data science evolved, it became more accessible to practitioners outside of academia, leading to its widespread adoption in industry and other sectors (this is sometimes referred to as <em>democratization</em>).</p>
+<p>However, with that evolution the scientific foundations became more fragile: an increasing number of practitioners entered the field from backgrounds that did not emphasize research. Many have up-skilled themselves through online courses or boot camps, often focusing on specific technologies stacks.</p>
+<p>From my experience in hiring numerous data scientists, and observing the composition of data science teams, the vast majority of applicants for data science roles have a computer science background, which often lacks research methods and a strong statistical foundation. Consequently, the curricula and experience of data scientists increasingly resemble those of developers rather than scientists.</p>
+<p>This post on a reddit <a href="https://www.reddit.com/r/datascience/comments/s36btr/why_do_data_scientists_refer_to_traditional/?rdt=38929">Data Science conversation</a> illustrates my point:</p>
+<blockquote class="blockquote">
+<p><em>ML in industry really doesn’t care about the model chosen, it’s more about building good data pipelines, getting your model callable in prod, and getting automated refresh processes</em>.</p>
+</blockquote>
+<p>Notice the emphasis on ‘good’ data pipelines, yet, the same quality is not expected from the model. I believe this is not a coincidence: it too reflects my experience working alongside large ML teams. In other words (and at the cost of exaggerating a bit), the quality of a model is not important. What matters is that the model be in production and callable with an API.</p>
+<p>But, if the model is of poor quality, aren’t we doing a disservice to the industry? If we deploy a poor model in production, attempts at deriving value from it may be seriously compromised. In some cases, the repercussions may be amplified by virtue of having been productionalized.</p>
+<p>A rebuttal I often hear is that the model is not used for mission-critical applications. While that may be true, I would argue that it feels more of an excuse to avoid deeper reasoning. Another rebuttal I sometimes hear is that the model will be regularly re-trained. That, again, is no excuse for poor modelling and re-training will do little to fix the underlying problems.</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p><em>In 2020 the technology company <a href="https://en.wikipedia.org/wiki/Palantir_Technologies">Palantir</a> went public. In its registration statement it stated: “If our customers are not able or willing to accept our product-based business model, instead of a labor-based business model, our business and results of operations could be negatively impacted”. This product-based model contrasts with a customized analytics consulting model, which, like the original evolution of data science, can be difficult to monetize from</em>.</p>
+</div></div><p>I once witnessed a team spending far more time and resources attempting to shave-off a few seconds of computational time in production than to ensuring a particular metric they were using was sensible. On another occasion, I had to advise a product manager against deploying a product in production because its predictions were severely misleading.</p>
+<p>In summary, I feel that the evolution towards technology at the expense of sensible and principled methods, towards <em>good data pipelines</em> at the expense of <em>good models</em> came at the cost of that very <em>insight</em> that was the premise of the field. This <em>product-centric view</em> of data science was arguably influenced by the software industry (see sidenote on Palantir). Nonetheless, in my view, the need for <em>insight-focused</em> approaches in many areas of the organization is no longer being fully met by data science.</p>
+<p><br></p>
+</section>
+<section id="where-are-we-now" class="level3 page-columns page-full" data-number="3.4">
+<h3 data-number="3.4" class="anchored" data-anchor-id="where-are-we-now"><span class="header-section-number">3.4</span> Where Are We Now?</h3>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p><em>People coming from traditional software development and IT tend to struggle empathizing with a data scientist. Katie Malone put it eloquently: “[in IT/software development] there’s the notion that if you keep working on something, you’re going to get there. People who are used to thinking this way can sometimes get pretty confused when a data scientist comes back and says: I’m sorry, this is isn’t working and there’s nothing we can do about that. That sounds like a foreign idea</em>”.</p>
+</div></div><p>We now find ourselves at the intersection of four significant developments. <strong>First</strong>, the <u>prominent influence of technology firms</u>, promoting a culture of bigger-is-better<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>, thus overshadowing important applications of the field. <strong>Second</strong>, the <u>complex relationship between business and science</u>, with its high failure rate and long development cycles, causes organizations to view science with suspicion. <strong>Third</strong>, the <u>democratization of data science</u>, which has introduced many practitioners with limited background in scientific inquiry and principles and procedures that ensure the validity and reliability of their work. <strong>Fourth</strong>, the <u>advent of generative AI</u>, where models are predominantly pre-trained, has led to the deployment of generative AI being more akin to data plumbing.</p>
+<p>As a result, data science has inevitably evolved to focus more on <em>data projects</em> where the challenges are quite different, where finding the <em>signal</em> in the data may not even be the point or perhaps it’s straightforward (or deterministic), where generating insights may not even be necessary or where the focus is to automate a task at scale.</p>
+<p>Data science is increasingly resembling IT, with a mindset focused on completing tasks on time and within budget. We can see tangible signs of this evolution whereby many data science teams have now been brought under the IT function.</p>
+<p><br></p>
+</section>
+<section id="now-what-is-this-bad" class="level3 page-columns page-full" data-number="3.5">
+<h3 data-number="3.5" class="anchored" data-anchor-id="now-what-is-this-bad"><span class="header-section-number">3.5</span> Now What? Is This Bad?</h3>
+<p>In my experience, organizations have well-justified needs to handle pure data projects. These opportunities are often plentiful, and the main risks involve budget overruns, the establishment of new processes or managing a large team of contractors. Unlike projects with a strong scientific focus, the risks in these projects are manageable as long as sufficient resources are allocated.</p>
+<p>On the other hand, there is less and less science in the way data science is leveraged in many organizations. And I wonder if we should stop calling it data science. It’s data and it is important, but there is not much science in the way it has evolved.</p>
+<p>The field has now become a confusing mixture of several somewhat disjointed fields with only data as a common denominator. Data science jobs often lack the specificity to understand what the job is about. It is not uncommon for many data science positions to be disguised business reporting job posts.</p>
+<p>We need to also recognize that despite this evolution, the need for the full breadth of data science still exists in most organizations. There are still opportunities to understand things, solve problems and take decisions based on the evidence the data is providing.</p>
+<p>Some organizations make the needs for this type of insight quite explicit. For instance, in A/B testing we aim to understand whether a change, like changing the background colour of a web site, is associated with better outcomes. This is science because it involves identifying a suitable response measure, forming a hypothesis, conducting controlled experiments, and training models to draw evidence-based conclusions. It’s also data-centric because another important aspect is to systematically deploy these experiments at scale.</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p><em>One common myth that emerged as data science evolved is the belief that for data science to be valuable, it must result in productionalized machine learning models. However, that is not always where the true value lies. It is important to remember the core principles of data science and its broader potential to uncover insights and drive decision-making</em>.</p>
+</div></div><p>In HR, one might be interested in identifying drivers of turnover or whether systematic pay equity issues exist. This is also science because it requires one to identify and adjust for factors that would otherwise legitimately explain any observed difference. Such projects can be pretty complex because we try to make conclusions from observational data (as opposed to the randomized A/B experiment) and so proper methods of analyses can be difficult to implement. They are also more likely to result in single point decision making. What I mean by that is that the insight is often utilized to design new policies or programs aimed at addressing the problem: there is limited value in deploying a model in production.</p>
+</section>
+</section>
+<section id="conclusions" class="level2 page-columns page-full" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="conclusions"><span class="header-section-number">4</span> Conclusions</h2>
+<p>In conclusion, there is a need for greater clarity in data science roles. First, we should consider reclassifying jobs labelled as data science that involve little to no scientific discovery. Second, we should properly recognize and equally value data science roles that are insight-focused to help businesses uncover insights. Third, data science jobs need clearer definitions, and curricula should include research skills. Hiring managers need to more accurately match relevant skills to the needs of the role.</p>
+<p>But the central theme of this essay is that organizations need to understand that there is no one-size-fits-all approach. A data scientist who excels at building good data pipelines may be a good data professional but not necessarily a strong scientist. Conversely, a data scientist who excels at generating valid insights from a model may be a good scientist but not necessarily a strong data professional.</p>
+<p>The main value of productionalizing a model is when frequent decisions need to be made. Looking back at the first examples of productionalized models, such as FICO scores, exemplifies this need.</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p><em>Besides that of frequent decision making, another use for productionalized models is educational. For instance when we need to let the reader play with the output in order to understand a complex problem</em>.</p>
+</div></div><p>However, not all applications require frequent decisions to be made. And that insight can be just as valuable. Therefore, roles that are focused on insight discovery may not always require the ability to build data pipelines because the value of the model is self-evident once interpreted and properly communicated.</p>
+<p><br></p>
+<div style="page-break-after: always;"></div>
+<!-- ## Where I Fit In -->
+<!-- * In the function/business far from IT -->
+<!-- * Non-software-engineering -->
+<!-- * Sometimes referred to as "Applied Scientist", "Research Scientist", "Business Analytics", "Sr. Data Analyst" -->
+<!-- * Focus is on **decision support**. Some examples are: -->
+<!--   - Are women being paid less than men and if so, what can we do about it? -->
+<!--   - Why are people/customers leaving? If so, what are the drivers and what can we do about it? -->
+<!--   - Is air quality really getting worse and what are the culprits? -->
+<!--   - Is this safety campaign actually working? -->
+<!--   - We are experiencing increased H2S issues in secondary extraction. Are they associated with specific locations in the mine? -->
+<!--   - Are employees truly being randomly tested for alcohol and drugs? -->
+<!--   - What vehicle models in our fleet are experiencing excessive repairs/maintenance? -->
+<!-- * Core areas: -->
+<!--   - Strategic analytics: i.e. any analytics that supports strategic decisions. Stakes are high^[Consider the arbitration between the union and Suncor Energy around random drug testing which resulted in a humiliating and costly judgement against Suncor (all information is publicly available). I was asked to provide a point of view after the fact for a senior leader. What I found after reading the arbitration decision and reviewing the data was astonishing: despite alcohol and drugs being an established problem at site, Suncor failed to provide evidence of this problem and failed to establish the causal link between A&D and accidents at sites (which the Supreme Court of Canada requires). That evidence - I discovered - had always been available: Suncor lacked the knowledge and skills to perform statistical and epidemiological analyses needed to support their arguments. And, to add insult to injury, they relied on a toxicologist instead of a more appropriate epidemiologist or statistician to support their arguments. Ironically, the union did rely on an epidemiologist.]. The problem falls outside of existing policies. Non-repeatable: do it once and never again. No consensus about best choice. -->
+<!-- * I answer those questions with scientific rigour in a way that is defensible -->
+<!-- * I quantify the uncertainty so that we can quantify the evidence in support or against something -->
+<!-- * Analytics professionals in large organizations may sometimes use methods that overlook important details or lack scientific support. This is where my expertise can be valuable. If a decision " -->
+<!-- <br> -->
+<!-- > *Statisticians have spent the past 200 years figuring out what traps lie in wait when we try to understand the world through data. Tim Harford, Financial Times (March 28, 2014)* -->
+<p><br></p>
+</section>
+
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>Donoho, David. “50 Years of data science.” Journal of Computational and Graphical Statistics 26, no. 4 (October 2, 2017): 745–66. https://doi.org/10.1080/10618600.2017.1384734<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>Varoquaux, Gaël, Alexandra Sasha Luccioni, and Meredith Whittaker. “Hype, Sustainability, and the Price of the Bigger-Is-Better Paradigm in AI.” arXiv, September 21, 2024. https://doi.org/10.48550/arXiv.2409.14160.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","selector":".lightbox","openEffect":"zoom","descPosition":"bottom","loop":false});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
+
+
+
+
+<script src="Changing Landscape of DS_files/libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
