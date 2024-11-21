@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.433">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Thomas Speidel">
+<meta name="dcterms.date" content="2023-08-28">
+
+<title>Thomas Speidel - Prediction vs.&nbsp;Inference Cultures: Same Toolbox, Different Focus</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Thomas Speidel</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../blog.html" rel="" target="">
+ <span class="menu-text">Blog</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../colophon.html" rel="" target="">
+ <span class="menu-text">Colophon</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/tspeidel" rel="" target=""><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/ThomasSpeidel" rel="" target=""><i class="bi bi-twitter" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools">
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#prediction" id="toc-prediction" class="nav-link active" data-scroll-target="#prediction">Prediction</a></li>
+  <li><a href="#inference" id="toc-inference" class="nav-link" data-scroll-target="#inference">Inference</a></li>
+  <li><a href="#accuracy-metrics" id="toc-accuracy-metrics" class="nav-link" data-scroll-target="#accuracy-metrics">Accuracy Metrics</a></li>
+  <li><a href="#suggestions-for-practitioners" id="toc-suggestions-for-practitioners" class="nav-link" data-scroll-target="#suggestions-for-practitioners">Suggestions for Practitioners</a>
+  <ul class="collapse">
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
+  <li><a href="#resources" id="toc-resources" class="nav-link" data-scroll-target="#resources">Resources</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content page-columns page-full" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Prediction vs.&nbsp;Inference Cultures: Same Toolbox, Different Focus</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Thomas Speidel </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">August 28, 2023</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+<div>
+  <div class="abstract">
+    <div class="abstract-title">Abstract</div>
+    The role of accuracy metrics in prediction vs.&nbsp;inference.<br>
+  </div>
+</div>
+
+</header>
+
+<p><br></p>
+<section id="prediction" class="level1 page-columns page-full">
+<h1>Prediction</h1>
+<p>The popularity of AI, ML and Data Science certainly owes a lot to advances in data intensive models that occurred in the last decade or two (such as backpropagation in neural networks). The main focus of these applications has been that of maximizing predictive power. Its success can easily be seen in high signal-to-noise ratio applications (e.g.&nbsp;image recognition, voice recognition, language models and so on).</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>The title is inspired by Leo Breiman famous 2001 paper <a href="http://www2.math.uu.se/~thulin/mm/breiman.pdf">on the two cultures</a>, which is relevant to this topic. Breiman addresses the division between two approaches to data analysis and modelling: the “<em>data modelling</em>” culture and the “<em>algorithmic modelling</em>” culture. In the <em>data modelling</em> culture, the data is thought of as being generated by some stochastic process. In the <em>algorithmic culture</em>, the data generating process is unknown. Breiman, who developed CART, random forests and boosting, criticizes the statistical community for the “<em>almost exclusive use of data models</em>”. The ML culture of today is a continuation of Breiman’s <em>algorithmic culture</em>.</p>
+</div></div><p>What do I mean by <strong>signal-to-noise ratio</strong>? It’s a loose way of assessing how much signal a particular dataset contains. In a predictive model this could translate to a high R<sup>2</sup>. A simple heuristic I use (inspired by Andrew Ng), is to ask the following question: <em>how quickly can a human solve the same task</em>? If the answer is <em>a fraction of a second</em>, as in recognizing a cat from a dog, the problem has a high signal-to-noise ratio and it’s likely a prime application for machine learning.</p>
+<p>These applications are abundant these days. Indeed, most Data Science and Machine Learning curricula give an overwhelming emphases to pure prediction. To paraphrase Breiman, this is what I call the <strong>prediction culture</strong>, one where we are squarely focused on minimizing out of sample prediction error.</p>
+<p><br></p>
+</section>
+<section id="inference" class="level1 page-columns page-full">
+<h1>Inference</h1>
+<p>It’s easy to forget the other use of modelling, one that makes the identification and understanding of causal factors its ultimate goal (I use “causal” quite loosely here). Again, to use Breimann’s terminology, this is the <strong>inference culture</strong>. Inference is nearly absent in today’s Data Science and ML curricula. I want to quote from a <a href="https://stats.stackexchange.com/questions/244017/what-is-the-difference-between-prediction-and-inference">CrossValidated thread</a>:</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>Technically, prediction is a type of inference. So, the better terminology should be <em>predictive inference</em> vs.&nbsp;<em>causal inference</em>.</p>
+</div><div class="">
+<p>A more thorough explanation of this difference is provided by Berk. To paraphrase Berk (2020), in inference we are concerned with explaining nature’s machinery and inference is the toolbox we use to weigh the evidence of what we discover. In the purely predictive world, we are concerned with accuracy: the model need not to explain nature’s machinery. Unlike inference, there is little subject matter expertise and constraints imposed between the input and the output: the data will dictate that, for good or for worse.</p>
+</div></div>
+<blockquote class="blockquote">
+<p><strong>Inference.</strong> You want to find out what the effect of Age, Passenger Class and, Gender has on surviving the Titanic Disaster. You can put up a logistic regression and infer the effect each passenger characteristic has on survival rates.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p><strong>Prediction</strong>: Given some information on a Titanic passenger, you want to choose from the set {lives,dies} and be correct as often as possible. Prediction doesn’t revolve around establishing the most accurate relation between the input and the output, accurate prediction cares about putting new observations into the right class as often as possible.</p>
+</blockquote>
+<p>In my experience, when the purely predictive applications don’t pan out, we simply throw away the baby with the bathtub water. Why? I suspect in many cases the reason is simply that practitioners don’t know about inference. And even when they do know about it, misconceptions abound. And there are a lot of misconceptions, <a href="https://stats.stackexchange.com/questions/563171/what-are-the-myths-associated-with-linear-regression-data-transformations">here are a few</a> just for regression.</p>
+<p><br></p>
+</section>
+<section id="accuracy-metrics" class="level1 page-columns page-full">
+<h1>Accuracy Metrics</h1>
+<p>Recall that the inferential culture is focused on identifying and understanding causal factors. We do not need a highly predictive model to achieve that. Instead, we want to identify “<em>which input has such a relationship, and how can we distinguish a ”true” relationship from random covariation</em>”.</p>
+<p>A low R<sup>2</sup> (or RMSE or any similar metric) simply means that the model as-is did not explain much of the variation in the response. For purely predictive purposes, a low R<sup>2</sup> may be enough to kill an entire project.</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>It’s instructive to read <a href="https://jamanetwork.com/journals/jamapediatrics/fullarticle/481292">the article by Cummings et al.</a> on reporting statistical information in medical journal articles:</p>
+<blockquote class="blockquote">
+<p><em>estimates of variance explained such as R2, correlation coefficients, and standardized regression coefficients are not useful measures of causal associations or agreement and should not be presented as the main results of an analysis</em>.</p>
+</blockquote>
+</div></div><p>However, when the interest is inference, insight can still be gained with low R<sup>2</sup>. In fact, low R<sup>2</sup> are the norm in medical research, social science and economics to name a few. In these fields, practitioners do not expect to account for all relevant features (it is simply not possible). Instead, the focus is on the <strong>individual features, the shape of the relationship with respect to the response and whether or not their presence in the model is of statistical (and practical) significance</strong>.</p>
+<p>Therefore, the focus in these tasks is on certain aspects of the feature in the model such as standard errors, p-values, effect size, the potential for interaction and so on: if a feature is statistically significant and its effect of some practical significance, that becomes valuable insight, irrespective of a not so high R<sup>2</sup>. Understanding how the response changes as a function of the feature becomes a powerful tool in understanding the problem, and this may well be all that’s needed.</p>
+<p><br></p>
+</section>
+<section id="suggestions-for-practitioners" class="level1 page-columns page-full">
+<h1>Suggestions for Practitioners</h1>
+<p>It’s fair to say that most data science practitioners today come from a pure prediction (i.e.&nbsp;algorithmic) culture. And without a grasp of inference and statistics, it may sound disconcerting to learn that some of the routines in pure prediction can be counter-productive when the aim is inference. Worse, in my view this leads to immediately cancel a whole project should the accuracy not be high, when in fact some insight could still be gleaned from the data using inferential methods.</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>These differences come up more and more often as students are often exposed to the two cultures when they take statistics classes and ML ones at the same time. For instance in this <a href="https://www.reddit.com/r/statistics/comments/15np83p/q_when_is_it_ok_to_not_split_data_between_train/?utm_source=share&amp;utm_medium=web2x&amp;context=3">reddit thread</a> the confusion is obvious, as if to say: wait a second, I was just told by one prof to split the data into training and testing, and now this other prof tells me no need to do so?!</p>
+</div></div><p>Here are some suggestions:</p>
+<ul>
+<li><p>Try to assess as early as possible whether the ultimate goal is pure prediction or inference. I often find it safer to start with inference and then move to pure prediction if that is indeed the goal.</p></li>
+<li><p>If your goal is pure prediction and you care a lot about feature importance, consider switching to an inferential approach. Feature importance, SHAP plots are not what they seem to be as they represent <em>examples of features</em> (see <a href="https://med.stanford.edu/content/dam/sm/dbds/documents/biostats-workshop/paper-1-.pdf">Efron</a> and also <a href="https://www.fharrell.com/post/split-val/">Harrell</a>). They also give the illusion of a causal link (again see Efron’s paper).</p></li>
+</ul>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>In his paper on prediction, estimation and attribution, Efron writes: “<em>the ‘weak learners’ model of prediction seems dominant in this example. Evidently there are a great many genes weakly correlated with prostate cancer, which can be combined in different combinations to give near-perfect predictions. This is an advantage if prediction is the only goal, but a disadvantage as far as attribution is concerned</em>.</p>
+</div></div><ul>
+<li><p>For many applications where the signal to noise ratio is low, and the pure prediction approach yields too low accuracy, consider using inference instead of cancelling the whole project. Your client will be thankful.</p></li>
+<li><p>If you use inference you need to level set (i.e.&nbsp;lower) the client’s expectations, since they are probably calibrated around high predictive accuracy.</p></li>
+<li><p>If you are using inference you need to think differently about the “product”. A model deployed in production here likely makes little sense (and will inflate the customer’s expectations). Unlike pure prediction, there’s nothing inherently “<em>deployable</em>” when it comes to inference other than pedagogical or scenario generation tools. You may want to focus on how to best communicate the insight or incorporate the insight in a dashboard. For example, features that are both statistical and practically significant could be incorporated in monitoring dashboards. Perhaps, run charts could be used to monitor for significant changes in the feature.</p></li>
+</ul>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>It certainly feels like we have moved from one extreme to the other: for more than a century we have focused on the <em>data culture</em>, that is, inference, unbiased estimates, causation and data generating processes. Breiman hoped the field would pay more attention to algorithmic (i.e.&nbsp;pure prediction) approaches. Little would he know (he died in 2005), that the world seems to be overwhelmingly focused on prediction and prediction only today. This is not to say prediction is not important. Far from it. Rather, that the vast majority of practitioners are blind to inference.</p>
+</section>
+<section id="resources" class="level2">
+<h2 class="anchored" data-anchor-id="resources">Resources</h2>
+<ul>
+<li>https://arxiv.org/abs/1811.10154<br>
+</li>
+<li>https://med.stanford.edu/content/dam/sm/dbds/documents/biostats-workshop/paper-1-.pdf</li>
+<li>https://www.fharrell.com/post/split-val/<br>
+</li>
+<li>Berk, Richard A. Statistical Learning from a Regression Perspective. Springer Texts in Statistics. Cham: Springer International Publishing, 2020. https://doi.org/10.1007/978-3-030-40189-4.</li>
+</ul>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
